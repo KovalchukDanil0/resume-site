@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@mixin text-theme {
+  @apply text-black dark:text-white;
+}
+
+html {
+  @apply scroll-smooth;
+}
+
+body {
+  @apply h-screen w-screen bg-white bg-gradient-to-r from-slate-400 to-zinc-300 dark:bg-black dark:from-black dark:via-gray-800 dark:to-black;
+
+  background-size: 400%;
+  background-repeat: repeat-y;
+
+  animation-name: background-animation;
+  animation-duration: 20s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+}
+
+@keyframes background-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+main {
+  @apply size-full p-6;
+}
+
+p {
+  @include text-theme();
+  @apply text-base;
+}
+
+h1 {
+  @include text-theme();
+  @apply text-5xl md:text-7xl;
+}
+
+h2 {
+  @include text-theme();
+  @apply text-6xl;
+}
+
+h3 {
+  @include text-theme();
+  @apply text-5xl;
+}
+
+h4 {
+  @include text-theme();
+  @apply text-4xl;
+}
+
+h5 {
+  @include text-theme();
+  @apply text-3xl;
+}
+
+h6 {
+  @include text-theme();
+  @apply text-2xl;
+}
+
+img {
+  @apply text-transparent;
+}
+
+a:not(:has(svg)) {
+  @apply w-fit text-cyan-700 hover:underline dark:text-cyan-500;
+}

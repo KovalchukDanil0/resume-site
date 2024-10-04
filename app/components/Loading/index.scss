@@ -1,0 +1,75 @@
+$color: #9880ff;
+$color-shadow: #9880ff00;
+
+@mixin dot-falling-shared {
+  @apply size-3 rounded-lg bg-purple-600 text-purple-600;
+}
+
+@mixin dot-falling-after-before {
+  @apply absolute top-0 inline-block content-[""];
+}
+
+.dot-falling {
+  @include dot-falling-shared();
+  @apply relative left-[-9999px];
+
+  box-shadow: 9999px 0 0 0 $color;
+  animation: dot-falling 1s infinite linear;
+  animation-delay: 0.1s;
+
+  &::before {
+    @include dot-falling-shared();
+    @include dot-falling-after-before();
+
+    animation: dot-falling-before 1s infinite linear;
+    animation-delay: 0s;
+  }
+
+  &::after {
+    @include dot-falling-shared();
+    @include dot-falling-after-before();
+
+    animation: dot-falling-after 1s infinite linear;
+    animation-delay: 0.2s;
+  }
+}
+
+@keyframes dot-falling {
+  0% {
+    box-shadow: 9999px -15px 0 0;
+  }
+  25%,
+  50%,
+  75% {
+    box-shadow: 9999px 0 0 0 $color;
+  }
+  100% {
+    box-shadow: 9999px 15px 0 0 $color-shadow;
+  }
+}
+@keyframes dot-falling-before {
+  0% {
+    box-shadow: 9984px -15px 0 0 $color-shadow;
+  }
+  25%,
+  50%,
+  75% {
+    box-shadow: 9984px 0 0 0 $color;
+  }
+  100% {
+    box-shadow: 9984px 15px 0 0 $color-shadow;
+  }
+}
+@keyframes dot-falling-after {
+  0% {
+    box-shadow: 10014px -15px 0 0 $color-shadow;
+  }
+  25%,
+  50%,
+  75% {
+    box-shadow: 10014px 0 0 0 $color;
+  }
+  100% {
+    box-shadow: 10014px 15px 0 0 $color-shadow;
+  }
+}
