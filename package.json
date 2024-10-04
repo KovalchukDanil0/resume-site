@@ -7,7 +7,6 @@
     "dev": "remix vite:dev",
     "docker": "docker build ."
   },
-  "private": true,
   "dependencies": {
     "@remix-run/node": "^2.12.1",
     "globals": "^15.10.0",
@@ -33,7 +32,6 @@
     "@types/node": "^22.7.4",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.0",
-    "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "autoprefixer": "^10.4.20",
     "eslint": "^8.57.1",
