@@ -3,7 +3,7 @@ import { createThemeSessionResolver } from "remix-themes";
 
 const secret = process.env.SESSION_SECRET;
 if (!secret) {
-  throw new Error("secret is undefined!");
+  console.warn("cookies in unsecure mode!!!");
 }
 
 const sessionStorage = createCookieSessionStorage({
@@ -13,7 +13,7 @@ const sessionStorage = createCookieSessionStorage({
     path: "/",
     httpOnly: true,
     sameSite: "lax",
-    secrets: [secret],
+    secrets: [secret ?? ""],
     // secure: true,
   },
 });
