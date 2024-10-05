@@ -1,4 +1,4 @@
-import { LinksFunction, LoaderFunctionArgs } from "@remix-run/node";
+import { LoaderFunctionArgs } from "@remix-run/node";
 import {
   isRouteErrorResponse,
   Links,
@@ -20,11 +20,7 @@ import {
 import { themeSessionResolver } from "./.server/sessions";
 import Loading from "./components/Loading";
 import Navigation from "./components/Navigation";
-import stylesheet from "./index.scss?url";
-
-export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: stylesheet },
-];
+import "./index.scss";
 
 type LoaderProps = { theme: Theme | null };
 

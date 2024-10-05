@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@mixin text-theme {
-  @apply text-black dark:text-white;
-}
-
 html {
   @apply scroll-smooth;
 }
@@ -38,38 +34,31 @@ main {
 }
 
 p {
-  @include text-theme();
-  @apply text-base;
+  @apply text-base text-black dark:text-white;
 }
 
 h1 {
-  @include text-theme();
-  @apply text-5xl md:text-7xl;
+  @apply text-5xl text-black dark:text-white md:text-7xl;
 }
 
 h2 {
-  @include text-theme();
-  @apply text-6xl;
+  @apply text-6xl text-black dark:text-white;
 }
 
 h3 {
-  @include text-theme();
-  @apply text-5xl;
+  @apply text-5xl text-black dark:text-white;
 }
 
 h4 {
-  @include text-theme();
-  @apply text-4xl;
+  @apply text-4xl text-black dark:text-white;
 }
 
 h5 {
-  @include text-theme();
-  @apply text-3xl;
+  @apply text-3xl text-black dark:text-white;
 }
 
 h6 {
-  @include text-theme();
-  @apply text-2xl;
+  @apply text-2xl text-black dark:text-white;
 }
 
 img {
