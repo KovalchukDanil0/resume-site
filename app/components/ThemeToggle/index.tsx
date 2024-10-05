@@ -18,7 +18,7 @@ export function ThemeToggle(props: ComponentProps<"button">) {
   return (
     <button
       {...props}
-      className="size-6 text-black dark:text-white"
+      className="size-6 text-slate-600 dark:text-orange-300"
       onClick={() => setTheme(EnumX.of(Theme).next(theme ?? Theme.LIGHT))}
     >
       {theme === Theme.LIGHT ? (
