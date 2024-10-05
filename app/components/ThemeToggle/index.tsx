@@ -1,20 +1,31 @@
-import { saveTheme } from "~/lib/theme";
+import { ComponentProps } from "react";
+import { FaMoon, FaSun } from "react-icons/fa";
+import { Theme, useTheme } from "remix-themes";
 
-export function ThemeToggle() {
+class EnumX {
+  static of<T extends object>(e: T) {
+    const values = Object.values(e);
+    return {
+      next: <K extends keyof T>(v: T[K]) =>
+        values[(values.indexOf(v) + 1) % values.length],
+    };
+  }
+}
+
+export function ThemeToggle(props: ComponentProps<"button">) {
+  const [theme, setTheme] = useTheme();
+
   return (
-    <ul>
-      <li>
-        <button>
-          <p className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <p className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          <span className="sr-only">Toggle theme</span>
-        </button>
-      </li>
-      <ul>
-        <button onClick={() => saveTheme("light")}>Light</button>
-        <button onClick={() => saveTheme("dark")}>Dark</button>
-        <button onClick={() => saveTheme("system")}>System</button>
-      </ul>
-    </ul>
+    <button
+      {...props}
+      className="size-6 text-black dark:text-white"
+      onClick={() => setTheme(EnumX.of(Theme).next(theme ?? Theme.LIGHT))}
+    >
+      {theme === Theme.LIGHT ? (
+        <FaMoon className="size-full" />
+      ) : (
+        <FaSun className="size-full" />
+      )}
+    </button>
   );
 }

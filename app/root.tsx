@@ -1,48 +1,93 @@
+import { LoaderFunctionArgs } from "@remix-run/node";
 import {
   isRouteErrorResponse,
   Links,
+  LiveReload,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
   useRouteError,
+  useRouteLoaderData,
 } from "@remix-run/react";
-import { ReactNode } from "react";
+import { ComponentProps, ReactElement, ReactNode } from "react";
+import {
+  PreventFlashOnWrongTheme,
+  Theme,
+  ThemeProvider,
+  useTheme,
+} from "remix-themes";
+import { themeSessionResolver } from "./.server/sessions";
 import Loading from "./components/Loading";
 import Navigation from "./components/Navigation";
 import "./index.scss";
 
-type LayoutType = { children: ReactNode };
+type LoaderProps = { theme: Theme | null };
 
-export function Layout({ children }: Readonly<LayoutType>) {
+export async function loader({
+  request,
+}: LoaderFunctionArgs): Promise<LoaderProps> {
+  const { getTheme } = await themeSessionResolver(request);
+  return {
+    theme: getTheme(),
+  };
+}
+
+type LayoutProps = { children: ReactNode };
+
+export function Layout({ children }: Readonly<LayoutProps>) {
+  const data = useRouteLoaderData<typeof loader>("root");
+
   return (
-    <html lang="en">
+    <ThemeProvider
+      specifiedTheme={data?.theme ?? Theme.DARK}
+      themeAction="/action/set-theme"
+    >
+      {children}
+    </ThemeProvider>
+  );
+}
+
+export default function App(): ReactElement {
+  return (
+    <AppBody>
+      <Navigation />
+      <main>
+        <Outlet />
+      </main>
+      <ScrollRestoration />
+      <Scripts />
+      <LiveReload />
+    </AppBody>
+  );
+}
+
+function AppBody({ children, ...props }: ComponentProps<"body">): ReactElement {
+  const data = useRouteLoaderData<typeof loader>("root");
+  const [theme] = useTheme();
+
+  return (
+    <html lang="en" className={theme === Theme.DARK ? "dark" : ""}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
         <Meta />
+        <PreventFlashOnWrongTheme ssrTheme={Boolean(data?.theme)} />
         <Links />
       </head>
-      <body suppressHydrationWarning>
-        <Navigation />
-        <main>{children}</main>
-        <ScrollRestoration />
-        <Scripts />
+      <body {...props} suppressHydrationWarning>
+        {children}
       </body>
     </html>
   );
 }
 
-export default function App() {
-  return <Outlet />;
-}
-
-export function ErrorBoundary() {
+export function ErrorBoundary(): ReactElement {
   const error = useRouteError();
 
   return (
-    <div className="flex flex-col items-center justify-center gap-5">
+    <AppBody className="flex flex-col items-center justify-center gap-5 text-center">
       {isRouteErrorResponse(error) ? (
         <>
           <h1 className="text-red-600">
@@ -59,10 +104,10 @@ export function ErrorBoundary() {
         alt="Cat Error"
         src="https://cataas.com/cat/gif"
       />
-    </div>
+    </AppBody>
   );
 }
 
-export function HydrateFallback() {
+export function HydrateFallback(): ReactElement {
   return <Loading />;
 }

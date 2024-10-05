@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  @apply h-screen w-screen bg-white bg-gradient-to-r from-slate-400 to-zinc-300 dark:bg-black dark:from-black dark:via-gray-800 dark:to-black;
+  @apply h-screen w-screen bg-slate-300 bg-gradient-to-r from-slate-400 to-zinc-300 dark:bg-slate-900 dark:from-black dark:via-gray-800 dark:to-black;
 
   background-size: 400%;
   background-repeat: repeat-y;

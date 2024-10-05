@@ -10,7 +10,7 @@ export default function Navigation({
   return (
     <nav
       {...props}
-      className="m-6 flex flex-row items-center justify-end gap-5"
+      className="sticky top-0 z-50 flex flex-row items-center justify-end gap-5 bg-inherit p-6"
     >
       <a href="/" className="mr-auto">
         Home
@@ -20,7 +20,7 @@ export default function Navigation({
       {pathname !== "/projects" && <a href="projects">Projects</a>}
       {pathname !== "/contact" && <a href="contact">Contact</a>}
 
-      <ThemeToggle />
+      <ThemeToggle value="dark" />
     </nav>
   );
 }
