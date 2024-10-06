@@ -1,16 +1,7 @@
 import { ComponentProps } from "react";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { Theme, useTheme } from "remix-themes";
-
-class EnumX {
-  static of<T extends object>(e: T) {
-    const values = Object.values(e);
-    return {
-      next: <K extends keyof T>(v: T[K]) =>
-        values[(values.indexOf(v) + 1) % values.length],
-    };
-  }
-}
+import { EnumX } from "~/lib/utils";
 
 export function ThemeToggle(props: ComponentProps<"button">) {
   const [theme, setTheme] = useTheme();

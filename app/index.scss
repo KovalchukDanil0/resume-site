@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+::selection {
+  @apply bg-purple-500 bg-opacity-30 dark:bg-purple-900;
+}
+
 html {
   @apply scroll-smooth;
 }
@@ -20,11 +24,11 @@ body {
 }
 
 @keyframes background-animation {
-  0% {
+  from {
     background-position: 0% 50%;
   }
 
-  100% {
+  to {
     background-position: 100% 50%;
   }
 }
