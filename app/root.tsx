@@ -35,7 +35,7 @@ export async function loader({
 
 type LayoutProps = { children: ReactNode };
 
-export function Layout({ children }: Readonly<LayoutProps>) {
+export function Layout({ children }: Readonly<LayoutProps>): ReactElement {
   const data = useRouteLoaderData<typeof loader>("root");
 
   return (

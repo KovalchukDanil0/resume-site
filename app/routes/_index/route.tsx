@@ -1,5 +1,5 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { Theme, useTheme } from "remix-themes";
+import { useTheme } from "remix-themes";
 import { twMerge } from "tailwind-merge";
 import "./index.scss";
 
@@ -50,13 +50,9 @@ export default function HomePage() {
 
       <img
         id="author-image"
-        className="size-96 place-self-center rounded-md object-cover object-center md:size-[40rem]"
+        className="size-96 place-self-center rounded-md object-cover object-left dark:object-center md:size-[40rem]"
         alt="There should be me"
-        src={
-          theme === Theme.LIGHT
-            ? "images/author-light.jpg"
-            : "images/author-dark.jpg"
-        }
+        src={`images/author-${theme}.jpg`}
       />
     </div>
   );
