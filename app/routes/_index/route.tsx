@@ -48,6 +48,7 @@ export default function HomePage() {
         </div>
       </div>
 
+      {/* appear image only when it loaded */}
       <img
         id="author-image"
         className="size-96 place-self-center rounded-md object-cover object-left dark:object-center md:size-[40rem]"
