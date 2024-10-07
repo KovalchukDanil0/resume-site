@@ -1,5 +1,6 @@
 import { useLocation } from "@remix-run/react";
 import { ComponentProps } from "react";
+import Link from "../Link";
 import { ThemeToggle } from "../ThemeToggle";
 
 export default function Navigation({
@@ -12,13 +13,13 @@ export default function Navigation({
       {...props}
       className="sticky top-0 z-50 flex flex-row items-center justify-end gap-5 bg-inherit p-6"
     >
-      <a href="/" className="mr-auto">
+      <Link href="/" className="mr-auto">
         Home
-      </a>
+      </Link>
 
-      {pathname !== "/about" && <a href="about">About</a>}
-      {pathname !== "/projects" && <a href="projects">Projects</a>}
-      {pathname !== "/contact" && <a href="contact">Contact</a>}
+      {pathname !== "/about" && <Link href="about">About</Link>}
+      {pathname !== "/projects" && <Link href="projects">Projects</Link>}
+      {pathname !== "/contact" && <Link href="contact">Contact</Link>}
 
       <ThemeToggle value="dark" />
     </nav>

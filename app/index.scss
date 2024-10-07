@@ -11,24 +11,16 @@ html {
 }
 
 body {
-  @apply h-screen w-screen bg-slate-300 bg-gradient-to-r from-slate-400 to-zinc-300 dark:bg-slate-900 dark:from-black dark:via-gray-800 dark:to-black;
+  @apply size-auto bg-slate-300 bg-gradient-to-r from-slate-400 to-zinc-300 dark:bg-slate-900 dark:from-black dark:via-gray-800 dark:to-black;
 
   background-size: 400%;
   background-repeat: repeat-y;
 
-  animation-name: background-animation;
-  animation-duration: 20s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  animation-fill-mode: both;
+  animation: background-animation 20s infinite ease-in-out both;
 }
 
 @keyframes background-animation {
-  from {
-    background-position: 0% 50%;
-  }
-
-  to {
+  50% {
     background-position: 100% 50%;
   }
 }
@@ -67,8 +59,4 @@ h6 {
 
 img {
   @apply text-transparent;
-}
-
-a:not(:has(svg)) {
-  @apply w-fit text-cyan-700 hover:underline dark:text-cyan-500;
 }

@@ -2,7 +2,6 @@ import { LoaderFunctionArgs } from "@remix-run/node";
 import {
   isRouteErrorResponse,
   Links,
-  LiveReload,
   Meta,
   Outlet,
   Scripts,
@@ -57,7 +56,6 @@ export default function App(): ReactElement {
       </main>
       <ScrollRestoration />
       <Scripts />
-      <LiveReload />
     </AppBody>
   );
 }
