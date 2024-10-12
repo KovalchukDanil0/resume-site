@@ -74,7 +74,7 @@ export default {
         shine: {
           "50%": {
             filter:
-              "drop-shadow(0 0 20px #ffdd50) drop-shadow(0 0 60px #ffdd50) drop-shadow(0 0 250px #ffdd50)",
+              "drop-shadow(0 0 20px #c2410c) drop-shadow(0 0 60px #c2410c) drop-shadow(0 0 250px #c2410c)",
           },
         },
 
@@ -115,13 +115,18 @@ export default {
 
         scale: "scale 3s forwards cubic-bezier(0.5, 1, 0.89, 1)",
 
-        "slightly-rotate": "slightly-rotate .5s ease-in-out 1",
+        rotate: "slightly-rotate .5s ease-in-out 1",
 
         shine: "shine 1s ease-in-out 1",
 
         star: "fall var(--fall-duration) var(--fall-delay) linear infinite,tail-fade var(--tail-fade-duration) var(--fall-delay) ease-out infinite",
 
         blink: "blink 2s linear infinite",
+      },
+
+      backgroundImage: {
+        "radial-gradient":
+          "radial-gradient(ellipse at bottom, var(--tw-gradient-stops))",
       },
     },
   },

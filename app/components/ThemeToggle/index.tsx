@@ -13,19 +13,16 @@ export function ThemeToggle(props: ComponentProps<"button">) {
   return (
     <button
       {...props}
-      className="size-6 text-slate-600 dark:text-orange-300"
+      className="size-6 text-orange-700 dark:text-slate-600"
       onClick={() => setTheme(EnumX.of(Theme).next(theme ?? Theme.DARK))}
     >
       {theme === Theme.LIGHT ? (
-        <FaMoon
-          className={twMerge(
-            "size-full",
-            !firstRender && "animate-slightly-rotate",
-          )}
-        />
-      ) : (
         <FaSun
           className={twMerge("size-full", !firstRender && "animate-shine")}
+        />
+      ) : (
+        <FaMoon
+          className={twMerge("size-full", !firstRender && "animate-rotate")}
         />
       )}
     </button>

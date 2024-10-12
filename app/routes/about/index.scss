@@ -12,7 +12,7 @@ $star-tail-height: 2px;
 }
 
 body {
-  @apply bg-[radial-gradient(ellipse_at_bottom,#94a3b8_0%,#71717a_100%)] dark:bg-[radial-gradient(ellipse_at_bottom,#0d1d31_0%,#0c0d13_100%)];
+  @apply bg-radial-gradient from-slate-400 to-zinc-500 dark:from-slate-900 dark:to-gray-950;
 
   background-repeat: no-repeat;
   background-size: cover;

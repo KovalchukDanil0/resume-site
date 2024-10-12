@@ -3,7 +3,7 @@ import "./index.scss";
 
 export default function AboutPage() {
   return (
-    <div className="mx-10 flex flex-col items-center justify-center gap-10 text-center">
+    <div className="mx-3 flex flex-col items-center justify-center gap-10 text-center md:mx-10">
       <h1 className="uppercase">About Me</h1>
 
       <h3>
