@@ -77,6 +77,37 @@ export default {
               "drop-shadow(0 0 20px #ffdd50) drop-shadow(0 0 60px #ffdd50) drop-shadow(0 0 250px #ffdd50)",
           },
         },
+
+        fall: {
+          to: {
+            transform: "translate3d(-30em, 0, 0)",
+          },
+        },
+
+        "tail-fade": {
+          "0%": {},
+          "50%": {
+            opacity: "1",
+            width: "var(--star-tail-length)",
+          },
+
+          "70%": {},
+          "80%": {
+            opacity: "0.05",
+            width: "0",
+          },
+
+          "100%": {
+            opacity: "0",
+            width: "0",
+          },
+        },
+
+        blink: {
+          "50%": {
+            opacity: "0.6",
+          },
+        },
       },
 
       animation: {
@@ -87,6 +118,10 @@ export default {
         "slightly-rotate": "slightly-rotate .5s ease-in-out 1",
 
         shine: "shine 1s ease-in-out 1",
+
+        star: "fall var(--fall-duration) var(--fall-delay) linear infinite,tail-fade var(--tail-fade-duration) var(--fall-delay) ease-out infinite",
+
+        blink: "blink 2s linear infinite",
       },
     },
   },

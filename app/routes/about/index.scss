@@ -1,0 +1,61 @@
+@use "sass:math";
+
+$star-count: 50;
+$star-tail-height: 2px;
+
+@mixin star-pseudo-elm($star-width) {
+  @apply animate-blink absolute top-0 h-full rounded-full content-[""];
+
+  left: calc($star-width / -2);
+  width: $star-width;
+  background: linear-gradient(45deg, transparent, currentColor, transparent);
+}
+
+body {
+  @apply bg-[radial-gradient(ellipse_at_bottom,#94a3b8_0%,#71717a_100%)] dark:bg-[radial-gradient(ellipse_at_bottom,#0d1d31_0%,#0c0d13_100%)];
+
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@function random_range($min, $max, $divide: 1) {
+  @return calc(math.clamp($min, math.random($max), $max) / $divide);
+}
+
+.star {
+  --fall-duration: 9s;
+  --star-tail-length: 6em;
+  --tail-fade-duration: var(--fall-duration);
+
+  $star-width: calc(var(--star-tail-length) / 6);
+
+  @apply animate-star absolute left-0 rounded-full text-amber-900 opacity-0 hover:text-green-600 dark:text-white;
+
+  top: var(--top-offset);
+  width: var(--star-tail-length);
+  height: $star-tail-height;
+
+  background: linear-gradient(45deg, currentColor, transparent);
+
+  filter: drop-shadow(0 0 6px currentColor);
+  transform: translate3d(104em, 0, 0);
+
+  @for $i from 1 through $star-count {
+    &:nth-child(#{$i}) {
+      --star-tail-length: #{random_range(500, 750, 100)}em;
+      --top-offset: #{random_range(0, 100)}vh;
+      --fall-duration: #{random_range(6, 12)}s;
+      --fall-delay: #{random_range(0, 10)}s;
+    }
+  }
+
+  &::before {
+    @include star-pseudo-elm($star-width);
+    @apply rotate-45;
+  }
+
+  &::after {
+    @include star-pseudo-elm($star-width);
+    @apply -rotate-45;
+  }
+}

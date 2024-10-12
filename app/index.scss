@@ -7,26 +7,15 @@
 }
 
 html {
-  @apply scroll-smooth;
+  @apply min-h-full;
 }
 
 body {
-  @apply size-auto bg-slate-300 bg-gradient-to-r from-slate-400 to-zinc-300 dark:bg-slate-900 dark:from-black dark:via-gray-800 dark:to-black;
-
-  background-size: 400%;
-  background-repeat: repeat-y;
-
-  animation: background-animation 20s infinite ease-in-out both;
-}
-
-@keyframes background-animation {
-  50% {
-    background-position: 100% 50%;
-  }
+  @apply size-auto bg-slate-300 dark:bg-slate-900;
 }
 
 main {
-  @apply size-full p-6;
+  @apply size-full p-8 md:p-20;
 }
 
 p {
@@ -42,19 +31,7 @@ h2 {
 }
 
 h3 {
-  @apply text-5xl text-black dark:text-white;
-}
-
-h4 {
-  @apply text-4xl text-black dark:text-white;
-}
-
-h5 {
-  @apply text-3xl text-black dark:text-white;
-}
-
-h6 {
-  @apply text-2xl text-black dark:text-white;
+  @apply text-base text-black dark:text-white md:text-xl;
 }
 
 img {

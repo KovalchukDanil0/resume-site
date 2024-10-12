@@ -2,11 +2,11 @@ import { ComponentProps } from "react";
 import { twMerge } from "tailwind-merge";
 
 interface Props extends ComponentProps<"a"> {
-  variant?: "common" | "arrow";
+  variant?: "arrow";
 }
 
 export default function Link({
-  variant = "common",
+  variant,
   className,
   children,
   ...props
@@ -14,7 +14,7 @@ export default function Link({
   return (
     <a
       className={twMerge(
-        "w-fit text-cyan-700 hover:underline dark:text-cyan-500",
+        "w-fit cursor-pointer text-cyan-900 hover:underline dark:text-cyan-500",
         variant === "arrow" && "flex flex-row items-center",
 
         className,

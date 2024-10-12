@@ -11,7 +11,7 @@ export default function Navigation({
   return (
     <nav
       {...props}
-      className="sticky top-0 z-50 flex flex-row items-center justify-end gap-5 bg-inherit p-6"
+      className="sticky top-0 z-50 flex flex-row items-center justify-end gap-5 bg-inherit p-6 opacity-75 backdrop-blur-xl backdrop-filter"
     >
       <Link href="/" className="mr-auto">
         Home

@@ -2,27 +2,22 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { useTheme } from "remix-themes";
 import { twMerge } from "tailwind-merge";
 import Link from "~/components/Link";
-
-const fullName = ["Danylo", "Kovalchuk"];
+import "./index.scss";
 
 export default function HomePage() {
   const [theme] = useTheme();
 
   return (
-    <div className="m-5 flex flex-col-reverse items-center justify-around gap-3 md:m-12 md:flex-row">
-      <div className="mx-0 mt-5 flex min-h-72 flex-col gap-5 md:mx-48 md:mt-0">
+    <div className="flex flex-col-reverse items-center justify-around gap-8 md:flex-row md:gap-3">
+      <div className="mx-0 flex flex-col gap-5 md:mx-10 xl:mx-48">
         <h1 className="scale-90 animate-scale">
-          {fullName.map((part, idx) => (
-            <>
-              <span
-                key={part}
-                style={{ animationDelay: `${idx * 250}ms` }}
-                className="inline-block animate-fade-in opacity-0 blur-sm animate-cubic-bezier"
-              >
-                {part}
-              </span>{" "}
-            </>
-          ))}
+          <span className="inline-block animate-fade-in opacity-0 blur-sm animate-delay-200 animate-cubic-bezier">
+            Danylo
+          </span>
+          &nbsp;
+          <span className="inline-block animate-fade-in opacity-0 blur-sm animate-delay-500 animate-cubic-bezier">
+            Kovalchuk
+          </span>
         </h1>
         <p className="animate-fade-in opacity-0 animate-delay-200">
           Motivated and detail-oriented Full-Stack Developer with hands-on
@@ -70,9 +65,7 @@ export default function HomePage() {
 
       <img
         id="author-image"
-        className={twMerge(
-          "size-96 place-self-center rounded-md object-cover object-[-40px] dark:object-center md:size-[40rem] md:object-left",
-        )}
+        className="place-self-center rounded-md object-cover object-[-40px] dark:object-center sm:w-fit md:size-[40rem] md:object-left"
         alt={`Danylo Kovalchuk in ${theme} theme`}
         src={`images/author-${theme}.jpg`}
       />

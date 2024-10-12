@@ -1,0 +1,14 @@
+body {
+  @apply bg-gradient-to-r from-slate-400 to-zinc-300 dark:from-black dark:via-gray-800 dark:to-black;
+
+  background-size: 400%;
+  background-repeat: repeat-y;
+
+  animation: background-animation 20s infinite ease-in-out both;
+}
+
+@keyframes background-animation {
+  50% {
+    background-position: 100% 50%;
+  }
+}
