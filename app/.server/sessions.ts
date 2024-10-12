@@ -9,12 +9,15 @@ if (!secret) {
 const sessionStorage = createCookieSessionStorage({
   cookie: {
     name: "__remix-themes",
-    // domain: 'remix.run',
+    domain:
+      process.env.NODE_ENV === "development"
+        ? undefined
+        : "danylo-resume-site.vercel.app",
     path: "/",
     httpOnly: true,
     sameSite: "lax",
     secrets: [secret ?? ""],
-    // secure: true,
+    secure: true,
   },
 });
 
