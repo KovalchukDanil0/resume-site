@@ -4,7 +4,7 @@ $star-count: 50;
 $star-tail-height: 2px;
 
 @mixin star-pseudo-elm($star-width) {
-  @apply animate-blink absolute top-0 h-full rounded-full content-[""];
+  @apply absolute top-0 h-full animate-blink rounded-full content-[""];
 
   left: calc($star-width / -2);
   width: $star-width;
@@ -29,7 +29,7 @@ body {
 
   $star-width: calc(var(--star-tail-length) / 6);
 
-  @apply animate-star absolute left-0 rounded-full text-amber-900 opacity-0 hover:text-green-600 dark:text-white;
+  @apply absolute left-0 animate-star rounded-full text-cyan-900 opacity-0 hover:text-green-600 dark:text-white;
 
   top: var(--top-offset);
   width: var(--star-tail-length);
@@ -57,5 +57,45 @@ body {
   &::after {
     @include star-pseudo-elm($star-width);
     @apply -rotate-45;
+  }
+}
+
+#perspective {
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 58px;
+  font-weight: 900;
+  letter-spacing: -2px;
+  text-transform: uppercase;
+
+  > div {
+    height: 50px;
+    overflow: hidden;
+    position: relative;
+
+    &:nth-child(odd) {
+      transform: skew(60deg, -30deg) scaleY(0.667);
+    }
+
+    &:nth-child(even) {
+      transform: skew(0deg, -30deg) scaleY(1.333);
+    }
+
+    > p {
+      margin: 0;
+      height: 50px;
+      line-height: 50px;
+      transition: all 0.5s ease-in-out;
+    }
+
+    @for $i from 1 to 6 {
+      &:nth-child(#{$i}) {
+        left: calc(29px * $i);
+      }
+    }
+  }
+
+  &:hover p {
+    transform: translate(0, -50px);
   }
 }

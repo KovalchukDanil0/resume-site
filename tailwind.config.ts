@@ -39,6 +39,38 @@ const extraPlugin: PluginCreator = ({ addUtilities }) =>
       "animation-delay": "1s",
     },
 
+    ".animate-duration-050": {
+      "animation-duration": ".5s",
+    },
+
+    ".animate-duration-100": {
+      "animation-duration": "1s",
+    },
+
+    ".animate-duration-200": {
+      "animation-duration": "2s",
+    },
+
+    ".animate-duration-300": {
+      "animation-duration": "3s",
+    },
+
+    ".animate-duration-400": {
+      "animation-duration": "4s",
+    },
+
+    ".animate-duration-500": {
+      "animation-duration": "5s",
+    },
+
+    ".animate-paused": {
+      "animation-play-state": "paused",
+    },
+
+    ".animate-running": {
+      "animation-play-state": "running",
+    },
+
     ".animate-cubic-bezier": {
       "animation-timing-function": "cubic-bezier(0.11, 0, 0.5, 0)",
     },

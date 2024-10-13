@@ -64,8 +64,7 @@ export default function HomePage() {
       </div>
 
       <img
-        id="author-image"
-        className="place-self-center rounded-md object-cover object-[-40px] dark:object-center sm:w-fit md:size-[40rem] md:object-left"
+        className="place-self-center rounded-md object-cover dark:object-center sm:w-fit md:size-[40rem] md:object-[-40px]"
         alt={`Danylo Kovalchuk in ${theme} theme`}
         src={`images/author-${theme}.jpg`}
       />

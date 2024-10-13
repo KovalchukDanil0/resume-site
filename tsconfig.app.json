@@ -1,4 +1,10 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["remix.env.d.ts", "app", "app/.server/*.ts", "app/.client/*.tsx"]
+  "include": [
+    "remix.env.d.ts",
+    "app",
+    "app/.server/*.ts",
+    "app/.client/*.tsx",
+    "app/routes/projects/route.tsx"
+  ]
 }
