@@ -45,6 +45,8 @@ type Props = {
   icon: IconProps;
 };
 
+// Make link pointing to project not site wiki
+
 export default function TechIcon({ href, icon }: Readonly<Props>) {
   let IconElm: (props: DynamicElementProps) => ReactElement;
 
@@ -109,7 +111,8 @@ export default function TechIcon({ href, icon }: Readonly<Props>) {
 
   return (
     <a
-      className="animate-duration-050 size-20 scale-75 animate-scale md:size-40"
+      className="size-20 scale-75 animate-scale animate-duration-050 md:size-40"
+      target="_blank"
       href={href}
     >
       <IconElm className="size-full object-contain transition-all hover:scale-110" />
