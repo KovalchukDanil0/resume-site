@@ -1,9 +1,8 @@
-import { ReactElement } from "react";
+import { ComponentProps, ReactElement } from "react";
 import { Theme, useTheme } from "remix-themes";
-import { DynamicElementProps } from ".";
 
 export default function CssSvg(
-  props: Readonly<DynamicElementProps>,
+  props: Readonly<ComponentProps<"svg">>
 ): ReactElement {
   const [theme] = useTheme();
 

@@ -16,9 +16,9 @@ import {
   ThemeProvider,
   useTheme,
 } from "remix-themes";
-import { themeSessionResolver } from "./.server/sessions";
-import Loading from "./components/Loading";
-import Navigation from "./components/Navigation";
+import { themeSessionResolver } from "~/.server/sessions";
+import Loading from "~/components/Loading";
+import Navigation from "~/components/Navigation";
 import "./index.scss";
 
 type LoaderProps = { theme: Theme | null };
@@ -69,7 +69,7 @@ function AppBody({ children, ...props }: ComponentProps<"body">): ReactElement {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
         <Meta />
         <PreventFlashOnWrongTheme ssrTheme={Boolean(data?.theme)} />
         <Links />
@@ -98,7 +98,7 @@ export function ErrorBoundary(): ReactElement {
       )}
 
       <img
-        className="size-64 object-cover md:size-96"
+        className="object-cover size-64 md:size-96"
         alt="Cat Error"
         src="https://cataas.com/cat/gif"
       />

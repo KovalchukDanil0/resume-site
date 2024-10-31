@@ -1,8 +1,7 @@
-import { ReactElement } from "react";
-import { DynamicElementProps } from ".";
+import { ComponentProps, ReactElement } from "react";
 
 export default function TypeScriptSvg(
-  props: Readonly<DynamicElementProps>,
+  props: Readonly<ComponentProps<"svg">>
 ): ReactElement {
   return (
     <svg

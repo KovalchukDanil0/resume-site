@@ -1,24 +1,25 @@
 import { ComponentProps, ReactElement } from "react";
-import CssSvg from "./CssSvg";
-import DockerSvg from "./DockerSvg";
-import HtmlSvg from "./HtmlSvg";
-import JavaScriptSvg from "./JavaScriptSvg";
-import MdxSvg from "./MdxSvg";
-import MongoDBSvg from "./MongoDBSvg";
-import MySqlSvg from "./MySqlSvg";
-import NextJsSvg from "./NextJsSvg";
-import NodeJsSvg from "./NodeJsSvg";
-import NpmSvg from "./NpmSvg";
-import PostgreSqlSvg from "./PostgreSqlSvg";
-import ReactSvg from "./ReactSvg";
-import RollupSvg from "./RollupSvg";
-import SassSvg from "./SassSvg";
-import TailwindCssSvg from "./TailwindCssSvg";
-import TypeScriptSvg from "./TypeScriptSvg";
-import ViteSvg from "./ViteSvg";
-import WebpackSvg from "./WebpackSvg";
-
-export type DynamicElementProps = ComponentProps<"svg">;
+import { twMerge } from "tailwind-merge";
+import {
+  CssSvg,
+  DockerSvg,
+  HtmlSvg,
+  JavaScriptSvg,
+  MdxSvg,
+  MongoDBSvg,
+  MySqlSvg,
+  NextJsSvg,
+  NodeJsSvg,
+  NpmSvg,
+  PostgreSqlSvg,
+  ReactSvg,
+  RollupSvg,
+  SassSvg,
+  TailwindCssSvg,
+  TypeScriptSvg,
+  ViteSvg,
+  WebpackSvg,
+} from "../Svg";
 
 type IconProps =
   | "nodejs"
@@ -43,12 +44,13 @@ type IconProps =
 type Props = {
   href: ComponentProps<"a">["href"];
   icon: IconProps;
+  size: "large" | "small";
 };
 
-// Make link pointing to project not site wiki
+type IconElmProps = (props: ComponentProps<"svg">) => ReactElement;
 
-export default function TechIcon({ href, icon }: Readonly<Props>) {
-  let IconElm: (props: DynamicElementProps) => ReactElement;
+function determineIcon(icon: string): IconElmProps {
+  let IconElm: IconElmProps;
 
   switch (icon) {
     case "nodejs":
@@ -109,13 +111,22 @@ export default function TechIcon({ href, icon }: Readonly<Props>) {
       throw new Error(`specified icon "${icon}" doesn't exist`);
   }
 
+  return IconElm;
+}
+
+export default function TechIcon({ href, icon, size }: Readonly<Props>) {
+  const IconElm = determineIcon(icon);
+
   return (
     <a
-      className="size-20 scale-75 animate-scale animate-duration-050 md:size-40"
+      className={twMerge(
+        "scale-75 animate-scale animate-duration-050 md:size-40",
+        size === "large" ? "size-20" : "size-10"
+      )}
       target="_blank"
       href={href}
     >
-      <IconElm className="size-full object-contain transition-all hover:scale-110" />
+      <IconElm className="object-contain transition-all size-full hover:scale-110" />
     </a>
   );
 }

@@ -5,7 +5,7 @@ export default function Loading(props: ComponentProps<"div">) {
   return (
     <div
       {...props}
-      className="absolute left-1/2 top-1/2 m-0 -translate-x-1/2 -translate-y-1/2"
+      className="absolute m-0 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2"
     >
       <div className="dot-falling" />
     </div>

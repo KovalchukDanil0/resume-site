@@ -1,8 +1,7 @@
-import { ReactElement } from "react";
-import { DynamicElementProps } from ".";
+import { ComponentProps, ReactElement } from "react";
 
 export default function WebpackSvg(
-  props: Readonly<DynamicElementProps>,
+  props: Readonly<ComponentProps<"svg">>
 ): ReactElement {
   return (
     <svg

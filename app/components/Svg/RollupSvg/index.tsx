@@ -1,8 +1,7 @@
-import { ReactElement } from "react";
-import { DynamicElementProps } from ".";
+import { ComponentProps, ReactElement } from "react";
 
 export default function RollupSvg(
-  props: Readonly<DynamicElementProps>,
+  props: Readonly<ComponentProps<"svg">>
 ): ReactElement {
   return (
     <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">

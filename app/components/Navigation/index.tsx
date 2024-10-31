@@ -1,7 +1,7 @@
 import { useLocation } from "@remix-run/react";
 import { ComponentProps } from "react";
-import Link from "../Link";
-import { ThemeToggle } from "../ThemeToggle";
+import Link from "~/components/Link";
+import { ThemeToggle } from "~/components/ThemeToggle";
 
 export default function Navigation({
   ...props
@@ -11,7 +11,7 @@ export default function Navigation({
   return (
     <nav
       {...props}
-      className="sticky top-0 z-50 flex flex-row items-center justify-end gap-5 bg-inherit p-6 opacity-75 backdrop-blur-xl backdrop-filter"
+      className="sticky top-0 z-50 flex flex-row items-center justify-end gap-5 p-6 opacity-75 bg-inherit backdrop-blur-xl backdrop-filter"
     >
       <Link href="/" className="mr-auto">
         Home

@@ -9,13 +9,12 @@ export default function Link({
   return (
     <a
       className={twMerge(
-        "w-fit cursor-pointer text-cyan-900 hover:underline dark:text-cyan-500",
-
+        "w-fit cursor-pointer text-cyan-900 hover:underline dark:text-cyan-500 flex flex-row items-center",
         className
       )}
       {...props}
     >
-      {children}
+      {children} ➝
     </a>
   );
 }
