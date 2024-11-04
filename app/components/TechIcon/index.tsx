@@ -1,4 +1,4 @@
-import { ComponentProps, ReactElement } from "react";
+import { ReactElement } from "react";
 import { twMerge } from "tailwind-merge";
 import {
   CssSvg,
@@ -15,11 +15,18 @@ import {
   ReactSvg,
   RollupSvg,
   SassSvg,
+  SvgProps,
   TailwindCssSvg,
   TypeScriptSvg,
   ViteSvg,
   WebpackSvg,
 } from "../Svg";
+
+type Props = {
+  icon: IconProps;
+  size: "large" | "small";
+  href?: string;
+};
 
 type IconProps =
   | "nodejs"
@@ -41,15 +48,9 @@ type IconProps =
   | "postgresql"
   | "mysql";
 
-type Props = {
-  href: ComponentProps<"a">["href"];
-  icon: IconProps;
-  size: "large" | "small";
-};
+type IconElmProps = (props: SvgProps) => ReactElement;
 
-type IconElmProps = (props: ComponentProps<"svg">) => ReactElement;
-
-function determineIcon(icon: string): IconElmProps {
+function determineIcon(icon: IconProps): IconElmProps {
   let IconElm: IconElmProps;
 
   switch (icon) {
@@ -121,12 +122,12 @@ export default function TechIcon({ href, icon, size }: Readonly<Props>) {
     <a
       className={twMerge(
         "scale-75 animate-scale animate-duration-050 md:size-40",
-        size === "large" ? "size-20" : "size-10"
+        size === "large" ? "size-20" : "size-10",
       )}
       target="_blank"
       href={href}
     >
-      <IconElm className="object-contain transition-all size-full hover:scale-110" />
+      <IconElm className="size-full object-contain transition-all hover:scale-110" />
     </a>
   );
 }

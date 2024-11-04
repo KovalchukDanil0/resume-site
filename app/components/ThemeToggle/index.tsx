@@ -5,7 +5,9 @@ import { twMerge } from "tailwind-merge";
 import useFirstRender from "~/hooks/useFirstRender";
 import { EnumX } from "~/lib/utils";
 
-export function ThemeToggle(props: ComponentProps<"button">) {
+type Props = ComponentProps<"button">;
+
+export function ThemeToggle(props: Readonly<Props>) {
   const [theme, setTheme] = useTheme();
 
   const firstRender = useFirstRender();
@@ -13,7 +15,7 @@ export function ThemeToggle(props: ComponentProps<"button">) {
   return (
     <button
       {...props}
-      className="text-orange-700 size-6 dark:text-slate-600"
+      className="size-6 text-orange-700 dark:text-slate-600"
       onClick={() => setTheme(EnumX.of(Theme).next(theme ?? Theme.DARK))}
     >
       {theme === Theme.LIGHT ? (

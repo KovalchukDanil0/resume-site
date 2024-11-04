@@ -1,7 +1,8 @@
-import { ComponentProps, ReactElement } from "react";
+import { ReactElement } from "react";
+import { SvgProps } from "..";
 
 export default function TailwindCssSvg(
-  props: Readonly<ComponentProps<"svg">>
+  props: Readonly<SvgProps>,
 ): ReactElement {
   return (
     <svg

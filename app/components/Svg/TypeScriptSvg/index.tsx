@@ -1,8 +1,7 @@
-import { ComponentProps, ReactElement } from "react";
+import { ReactElement } from "react";
+import { SvgProps } from "..";
 
-export default function TypeScriptSvg(
-  props: Readonly<ComponentProps<"svg">>
-): ReactElement {
+export default function TypeScriptSvg(props: Readonly<SvgProps>): ReactElement {
   return (
     <svg
       {...props}

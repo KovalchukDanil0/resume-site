@@ -1,8 +1,7 @@
-import { ComponentProps, ReactElement } from "react";
+import { ReactElement } from "react";
+import { SvgProps } from "..";
 
-export default function RollupSvg(
-  props: Readonly<ComponentProps<"svg">>
-): ReactElement {
+export default function RollupSvg(props: Readonly<SvgProps>): ReactElement {
   return (
     <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
       <path

@@ -9,7 +9,13 @@ import {
   useRouteError,
   useRouteLoaderData,
 } from "@remix-run/react";
-import { ComponentProps, ReactElement, ReactNode } from "react";
+import {
+  ComponentProps,
+  ReactElement,
+  ReactNode,
+  useEffect,
+  useState,
+} from "react";
 import {
   PreventFlashOnWrongTheme,
   Theme,
@@ -20,6 +26,8 @@ import { themeSessionResolver } from "~/.server/sessions";
 import Loading from "~/components/Loading";
 import Navigation from "~/components/Navigation";
 import "./index.scss";
+
+type Props = ComponentProps<"body">;
 
 type LoaderProps = { theme: Theme | null };
 
@@ -48,9 +56,14 @@ export function Layout({ children }: Readonly<LayoutProps>): ReactElement {
 }
 
 export default function App(): ReactElement {
+  const [inIframe, setInIframe] = useState<boolean | null>(null);
+
+  useEffect(() => setInIframe(window.self !== window.top), []);
+
   return (
     <AppBody>
-      <Navigation />
+      {!inIframe && <Navigation />}
+
       <main>
         <Outlet />
       </main>
@@ -60,7 +73,7 @@ export default function App(): ReactElement {
   );
 }
 
-function AppBody({ children, ...props }: ComponentProps<"body">): ReactElement {
+function AppBody({ children, ...props }: Readonly<Props>): ReactElement {
   const data = useRouteLoaderData<typeof loader>("root");
   const [theme] = useTheme();
 
@@ -98,7 +111,7 @@ export function ErrorBoundary(): ReactElement {
       )}
 
       <img
-        className="object-cover size-64 md:size-96"
+        className="size-64 object-cover md:size-96"
         alt="Cat Error"
         src="https://cataas.com/cat/gif"
       />

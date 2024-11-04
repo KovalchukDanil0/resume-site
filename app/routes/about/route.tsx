@@ -4,8 +4,8 @@ import "./index.scss";
 
 export default function AboutPage() {
   return (
-    <div className="flex flex-col items-center justify-center gap-10 mx-3 text-center md:mx-10">
-      <div className="fixed top-0 left-0 w-full h-full -rotate-45 -z-50">
+    <div className="mx-3 flex flex-col items-center justify-center gap-10 text-center md:mx-10">
+      <div className="fixed left-0 top-0 -z-50 h-full w-full -rotate-45">
         {Array.from({ length: 50 }, (_ev, num) => num).map((value) => (
           <div key={value} className="star" />
         ))}
@@ -23,7 +23,7 @@ export default function AboutPage() {
         </h3>
       </div>
 
-      <div className="grid items-center justify-center grid-flow-col grid-cols-3 gap-5 grid-rows-7 md:grid-cols-4 md:grid-rows-5 xl:grid-cols-6 xl:grid-rows-3">
+      <div className="grid grid-flow-col grid-cols-3 grid-rows-7 items-center justify-center gap-5 md:grid-cols-4 md:grid-rows-5 xl:grid-cols-6 xl:grid-rows-3">
         <h2 className="col-span-3 md:col-span-5 xl:col-span-9">
           My Tech Stack
         </h2>
@@ -74,7 +74,7 @@ export default function AboutPage() {
         <TechIcon size="large" href="https://www.mysql.com" icon="mysql" />
       </div>
 
-      <Button href="projects">Go to my projects</Button>
+      <Button href="/projects">Go to my projects</Button>
     </div>
   );
 }

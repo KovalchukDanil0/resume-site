@@ -1,9 +1,8 @@
-import { ComponentProps, ReactElement } from "react";
+import { ReactElement } from "react";
 import { Theme, useTheme } from "remix-themes";
+import { SvgProps } from "..";
 
-export default function CssSvg(
-  props: Readonly<ComponentProps<"svg">>
-): ReactElement {
+export default function CssSvg(props: Readonly<SvgProps>): ReactElement {
   const [theme] = useTheme();
 
   const textColor = theme === Theme.DARK ? "#FFFFFF" : "#000000";

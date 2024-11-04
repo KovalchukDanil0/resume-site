@@ -1,0 +1,13 @@
+div#test {
+  animation: test 1.5s 1 ease-out forwards;
+}
+
+@keyframes test {
+  from {
+    max-height: 0;
+  }
+
+  to {
+    max-height: 200vh;
+  }
+}

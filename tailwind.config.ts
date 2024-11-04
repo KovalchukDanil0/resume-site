@@ -86,7 +86,7 @@ export default {
   theme: {
     extend: {
       keyframes: {
-        fadeIn: {
+        "fade-in": {
           from: { opacity: "0", "user-select": "none" },
           to: { opacity: "1", filter: "blur(0)" },
         },
@@ -140,10 +140,22 @@ export default {
             opacity: "0.6",
           },
         },
+
+        "appear-right": {
+          from: {
+            transform: "translateX(100vw)",
+          },
+        },
+
+        "appear-left": {
+          from: {
+            transform: "translateX(-100vw)",
+          },
+        },
       },
 
       animation: {
-        "fade-in": "3s ease 0s normal forwards 1 fadeIn",
+        "fade-in": "3s ease 0s normal forwards 1 fade-in",
 
         scale: "scale 3s forwards cubic-bezier(0.5, 1, 0.89, 1)",
 
@@ -154,6 +166,9 @@ export default {
         star: "fall var(--fall-duration) var(--fall-delay) linear infinite,tail-fade var(--tail-fade-duration) var(--fall-delay) ease-out infinite",
 
         blink: "blink 2s linear infinite",
+
+        "appear-right": "1s ease-in-out 0s 1 alternate appear-right",
+        "appear-left": "1s ease-in-out 0s 1 alternate appear-left",
       },
 
       backgroundImage: {

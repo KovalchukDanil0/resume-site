@@ -1,3 +1,5 @@
+import { ComponentProps } from "react";
+
 export { default as CssSvg } from "./CssSvg";
 export { default as DockerSvg } from "./DockerSvg";
 export { default as HtmlSvg } from "./HtmlSvg";
@@ -16,3 +18,5 @@ export { default as TailwindCssSvg } from "./TailwindCssSvg";
 export { default as TypeScriptSvg } from "./TypeScriptSvg";
 export { default as ViteSvg } from "./ViteSvg";
 export { default as WebpackSvg } from "./WebpackSvg";
+
+export type SvgProps = ComponentProps<"svg">;

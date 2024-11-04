@@ -3,7 +3,7 @@ import { RefObject, useEffect } from "react";
 export default function useOutside<T extends HTMLElement>(
   ref: RefObject<T>,
   callback: () => void,
-  condition = true
+  condition = true,
 ) {
   useEffect(() => {
     if (!condition) {

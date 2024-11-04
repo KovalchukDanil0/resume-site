@@ -1,21 +1,16 @@
 import { ComponentProps } from "react";
 import { twMerge } from "tailwind-merge";
 
-export default function Link({
-  className,
-  children,
-  ...props
-}: Readonly<ComponentProps<"a">>) {
+type Props = ComponentProps<"a">;
+
+export default function Link({ className, ...props }: Readonly<Props>) {
   return (
     <a
       className={twMerge(
         "w-fit cursor-pointer text-cyan-900 hover:underline dark:text-cyan-500",
-
-        className
+        className,
       )}
       {...props}
-    >
-      {children}
-    </a>
+    />
   );
 }
