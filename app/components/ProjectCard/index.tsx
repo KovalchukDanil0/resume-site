@@ -27,6 +27,12 @@ export default function ProjectCard({
   const projectDescriptionRef = useRef<HTMLDivElement>(null);
   const [expanded, setExpanded] = useState(false);
 
+  if (expanded) {
+    projectDescriptionRef.current?.scrollIntoView({
+      behavior: "smooth",
+    });
+  }
+
   const reverse = direction === "reverse";
   const displayDescription = children && buttonOpenText;
 
@@ -76,12 +82,6 @@ export default function ProjectCard({
               "flex flex-col items-center justify-center gap-5 bg-slate-300 p-5 text-center transition-all duration-1000 dark:bg-slate-800",
               expanded ? "mt-0" : "mt-[-200%] md:mt-[-100%]",
             )}
-            onTransitionEnd={() =>
-              expanded &&
-              projectDescriptionRef.current?.scrollIntoView({
-                behavior: "smooth",
-              })
-            }
           >
             {children}
 
