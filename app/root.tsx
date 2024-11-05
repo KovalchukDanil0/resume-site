@@ -9,13 +9,7 @@ import {
   useRouteError,
   useRouteLoaderData,
 } from "@remix-run/react";
-import {
-  ComponentProps,
-  ReactElement,
-  ReactNode,
-  useEffect,
-  useState,
-} from "react";
+import { ComponentProps, ReactElement, ReactNode } from "react";
 import {
   PreventFlashOnWrongTheme,
   Theme,
@@ -56,13 +50,9 @@ export function Layout({ children }: Readonly<LayoutProps>): ReactElement {
 }
 
 export default function App(): ReactElement {
-  const [inIframe, setInIframe] = useState<boolean | null>(null);
-
-  useEffect(() => setInIframe(window.self !== window.top), []);
-
   return (
     <AppBody>
-      {!inIframe && <Navigation />}
+      <Navigation />
 
       <main>
         <Outlet />

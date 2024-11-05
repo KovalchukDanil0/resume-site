@@ -1,4 +1,3 @@
-import Button from "~/components/Button";
 import ProjectCard from "~/components/ProjectCard";
 import "./index.scss";
 
@@ -23,7 +22,6 @@ export default function ProjectsPage() {
         description="Fully functional e-commerce website"
         imgSrc="https://raw.githubusercontent.com/KovalchukDanil0/paint-my-pet/refs/heads/main/white-dog-landscape-interior.jpg"
         imgAlt="White Dog Landscape Interior"
-        buttonText="Text"
         direction="reverse"
       >
         <img src="https://raw.githubusercontent.com/KovalchukDanil0/paint-my-pet/refs/heads/main/public/black-dog-molly-interior.jpg" />
@@ -35,8 +33,6 @@ export default function ProjectsPage() {
           dolorem dolores neque ut. Non expedita est animi quis ut nihil ipsum
           sed.
         </p>
-
-        <Button form="dialog">Return</Button>
       </ProjectCard>
 
       <ProjectCard

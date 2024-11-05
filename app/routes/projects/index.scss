@@ -1,3 +1,31 @@
+@use "sass:math";
+
+$d: 100vw;
+$angle: 55deg;
+
+:root {
+  --start-end-color: #94a3b8;
+  --middle-color: #94a3b883;
+}
+
+.dark {
+  --start-end-color: #62a1ff41;
+  --middle-color: #000;
+}
+
 body {
-  @apply bg-white dark:bg-black;
+  background-image: repeating-linear-gradient(
+    $angle,
+    var(--start-end-color) 0%,
+    var(--middle-color) 10%,
+    var(--start-end-color) $d
+  );
+  background-size: calc($d / math.sin($angle)) 100%;
+  animation: AnimationName 5s linear infinite reverse;
+}
+
+@keyframes AnimationName {
+  0% {
+    background-position: calc($d / sin($angle)) 0;
+  }
 }

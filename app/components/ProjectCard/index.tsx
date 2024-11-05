@@ -1,39 +1,47 @@
-import { ComponentProps, useRef } from "react";
+import { ComponentProps, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import Button from "~/components/Button";
-import "./index.scss";
 
 interface Props extends ComponentProps<"div"> {
   title: string;
   description: string;
   imgSrc: string;
   imgAlt?: string;
-  buttonText?: string;
+  buttonOpenText?: string;
+  buttonCloseText?: string;
   direction?: "default" | "reverse";
 }
 
 export default function ProjectCard({
   direction = "default",
+  buttonOpenText = "Open",
+  buttonCloseText = "Close",
   imgSrc,
   imgAlt,
   description,
   title,
-  buttonText,
+  className,
   children,
   ...props
 }: Readonly<Props>) {
   const projectDescriptionRef = useRef<HTMLDivElement>(null);
+  const [expanded, setExpanded] = useState(false);
 
   const reverse = direction === "reverse";
-  const displayDescription = children && buttonText;
+  const displayDescription = children && buttonOpenText;
 
-  const projectDescriptionToggle = () =>
-    projectDescriptionRef.current?.classList.toggle("hidden");
+  function expandDescription() {
+    setExpanded(!expanded);
+  }
 
   return (
     <div
       {...props}
-      className="scale-100 transition-all hover:my-10 hover:scale-105"
+      className={twMerge(
+        "scale-100 transition-all",
+        expanded ? "my-12 scale-105 md:my-20" : "hover:my-5 hover:scale-105",
+        className,
+      )}
     >
       <div
         className={twMerge(
@@ -48,8 +56,8 @@ export default function ProjectCard({
           <h3>{description}</h3>
 
           {displayDescription && (
-            <Button onClick={projectDescriptionToggle} className="mt-auto">
-              {buttonText}
+            <Button onClick={expandDescription} className="mt-auto">
+              {buttonOpenText}
             </Button>
           )}
         </div>
@@ -62,13 +70,24 @@ export default function ProjectCard({
       </div>
 
       {displayDescription && (
-        <div
-          id="test"
-          ref={projectDescriptionRef}
-          className="hidden bg-slate-300 p-5 dark:bg-slate-800"
-        >
-          <div className="flex flex-col items-center justify-center gap-5 text-center">
+        <div ref={projectDescriptionRef} className="overflow-hidden">
+          <div
+            className={twMerge(
+              "flex flex-col items-center justify-center gap-5 bg-slate-300 p-5 text-center transition-all duration-1000 dark:bg-slate-800",
+              expanded ? "mt-0" : "mt-[-200%] md:mt-[-100%]",
+            )}
+            onTransitionEnd={() =>
+              expanded &&
+              projectDescriptionRef.current?.scrollIntoView({
+                behavior: "smooth",
+              })
+            }
+          >
             {children}
+
+            <Button className="ml-auto" onClick={expandDescription}>
+              {buttonCloseText}
+            </Button>
           </div>
         </div>
       )}

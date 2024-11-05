@@ -78,6 +78,14 @@ const extraPlugin: PluginCreator = ({ addUtilities }) =>
     ".animate-once": {
       "animation-iteration-count": "1",
     },
+
+    ".animate-direction-reverse": {
+      "animation-direction": "reverse",
+    },
+
+    ".animate-direction-alternate-reverse": {
+      "animation-direction": "alternate-reverse",
+    },
   });
 
 export default {
@@ -152,6 +160,22 @@ export default {
             transform: "translateX(-100vw)",
           },
         },
+
+        expand: {
+          from: {
+            "max-height": "0",
+          },
+
+          to: {
+            "max-height": "200vh",
+          },
+        },
+
+        "slide-background": {
+          "50%": {
+            "background-position": "100% 50%",
+          },
+        },
       },
 
       animation: {
@@ -169,6 +193,10 @@ export default {
 
         "appear-right": "1s ease-in-out 0s 1 alternate appear-right",
         "appear-left": "1s ease-in-out 0s 1 alternate appear-left",
+
+        expand: "expand 1.5s 1 ease-out forwards",
+
+        "slide-background": "slide-background 20s infinite ease-in-out both",
       },
 
       backgroundImage: {
