@@ -3,7 +3,11 @@ import { twMerge } from "tailwind-merge";
 
 type Props = ComponentProps<"a">;
 
-export default function Link({ className, ...props }: Readonly<Props>) {
+export default function Link({
+  className,
+  children,
+  ...props
+}: Readonly<Props>) {
   return (
     <a
       className={twMerge(
@@ -11,6 +15,8 @@ export default function Link({ className, ...props }: Readonly<Props>) {
         className,
       )}
       {...props}
-    />
+    >
+      {children}
+    </a>
   );
 }

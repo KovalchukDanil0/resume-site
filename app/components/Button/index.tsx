@@ -17,7 +17,7 @@ export default function Link({
 
   return (
     <button
-      onClick={href ? () => navigate(href) : undefined}
+      onClick={() => href && navigate(href)}
       className={twMerge(
         "flex w-fit cursor-pointer flex-row items-center text-cyan-900 hover:underline dark:text-cyan-500",
         className,

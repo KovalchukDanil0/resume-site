@@ -2,14 +2,15 @@ import { ComponentProps, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import Button from "~/components/Button";
 
-interface Props extends ComponentProps<"div"> {
+export type DirectionType = "default" | "reverse";
+export interface Props extends ComponentProps<"div"> {
   title: string;
   description: string;
   imgSrc: string;
   imgAlt?: string;
   buttonOpenText?: string;
   buttonCloseText?: string;
-  direction?: "default" | "reverse";
+  direction?: DirectionType;
 }
 
 export default function ProjectCard({
@@ -79,8 +80,8 @@ export default function ProjectCard({
         <div ref={projectDescriptionRef} className="overflow-hidden">
           <div
             className={twMerge(
-              "flex flex-col items-center justify-center gap-5 bg-slate-300 p-5 text-center transition-all duration-1000 dark:bg-slate-800",
-              expanded ? "mt-0" : "mt-[-200%] md:mt-[-100%]",
+              "flex flex-col gap-5 bg-slate-300 p-5 transition-all duration-1000 dark:bg-slate-900",
+              expanded ? "mt-0" : "mt-[-180%] md:mt-[-130%]",
             )}
           >
             {children}
