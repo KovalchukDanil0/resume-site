@@ -1,4 +1,5 @@
 import { ReactElement } from "react";
+import { Theme, useTheme } from "remix-themes";
 import { twMerge } from "tailwind-merge";
 import {
   CssSvg,
@@ -20,7 +21,7 @@ import {
   TypeScriptSvg,
   ViteSvg,
   WebpackSvg,
-} from "../Svg";
+} from "~/components/Svg";
 
 type Props = {
   icon: IconProps;
@@ -117,6 +118,7 @@ function determineIcon(icon: IconProps): IconElmProps {
 
 export default function TechIcon({ href, icon, size }: Readonly<Props>) {
   const IconElm = determineIcon(icon);
+  const [theme] = useTheme();
 
   return (
     <a
@@ -127,7 +129,12 @@ export default function TechIcon({ href, icon, size }: Readonly<Props>) {
       target="_blank"
       href={href}
     >
-      <IconElm className="size-full object-contain transition-all hover:scale-110" />
+      <IconElm
+        className={twMerge(
+          "size-full object-contain text-green-700 transition-all hover:scale-110",
+          theme === Theme.DARK ? "text-white" : "text-black",
+        )}
+      />
     </a>
   );
 }

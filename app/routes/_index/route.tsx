@@ -1,7 +1,7 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { useTheme } from "remix-themes";
 import { twMerge } from "tailwind-merge";
-import Button from "~/components/Button";
+import { Button } from "~/components";
 import "./index.scss";
 
 export default function HomePage() {
@@ -42,6 +42,7 @@ export default function HomePage() {
         <Button
           className="animate-fade-in opacity-0 animate-delay-700"
           href="/about"
+          variant="arrowRight"
         >
           About Me
         </Button>
@@ -65,7 +66,7 @@ export default function HomePage() {
       <img
         className="place-self-center rounded-md object-cover dark:object-center sm:w-fit md:size-[40rem] md:object-[-40px]"
         alt={`Danylo Kovalchuk in ${theme} theme`}
-        src={`images/author-${theme}.jpg`}
+        src={`img/author-${theme}.jpg`}
       />
     </div>
   );

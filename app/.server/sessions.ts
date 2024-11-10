@@ -11,7 +11,7 @@ const sessionStorage = createCookieSessionStorage({
     name: "__remix-themes",
     domain:
       process.env.NODE_ENV === "development"
-        ? undefined
+        ? "localhost"
         : "danylo-resume-site.vercel.app",
     path: "/",
     httpOnly: true,

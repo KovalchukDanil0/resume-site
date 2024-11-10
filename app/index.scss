@@ -34,6 +34,10 @@ h3 {
   @apply text-base text-black dark:text-white md:text-xl;
 }
 
+button {
+  @apply text-black dark:text-white;
+}
+
 img {
   @apply text-transparent;
 }

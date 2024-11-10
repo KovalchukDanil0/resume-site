@@ -1,5 +1,7 @@
 import { ComponentProps } from "react";
 
+export default this;
+
 export { default as CssSvg } from "./CssSvg";
 export { default as DockerSvg } from "./DockerSvg";
 export { default as HtmlSvg } from "./HtmlSvg";

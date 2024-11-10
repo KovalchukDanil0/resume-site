@@ -7,7 +7,7 @@ import { EnumX } from "~/lib/utils";
 
 type Props = ComponentProps<"button">;
 
-export function ThemeToggle(props: Readonly<Props>) {
+export default function ThemeToggle(props: Readonly<Props>) {
   const [theme, setTheme] = useTheme();
 
   const firstRender = useFirstRender();

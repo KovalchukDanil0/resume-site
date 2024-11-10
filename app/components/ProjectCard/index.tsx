@@ -1,6 +1,6 @@
 import { ComponentProps, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
-import Button from "~/components/Button";
+import { Button } from "~/components";
 
 export type DirectionType = "default" | "reverse";
 export interface Props extends ComponentProps<"div"> {
@@ -11,6 +11,7 @@ export interface Props extends ComponentProps<"div"> {
   buttonOpenText?: string;
   buttonCloseText?: string;
   direction?: DirectionType;
+  href?: string;
 }
 
 export default function ProjectCard({
@@ -23,6 +24,7 @@ export default function ProjectCard({
   title,
   className,
   children,
+  href,
   ...props
 }: Readonly<Props>) {
   const projectDescriptionRef = useRef<HTMLDivElement>(null);
@@ -37,9 +39,8 @@ export default function ProjectCard({
   const reverse = direction === "reverse";
   const displayDescription = children && buttonOpenText;
 
-  function expandDescription() {
-    setExpanded(!expanded);
-  }
+  const expandDescription = () => setExpanded(!expanded);
+  const openLinkToProject = () => open(href);
 
   return (
     <div
@@ -64,7 +65,7 @@ export default function ProjectCard({
 
           {displayDescription && (
             <Button onClick={expandDescription} className="mt-auto">
-              {buttonOpenText}
+              {expanded ? `${buttonCloseText} ↗` : `${buttonOpenText} ↘`}
             </Button>
           )}
         </div>
@@ -80,15 +81,19 @@ export default function ProjectCard({
         <div ref={projectDescriptionRef} className="overflow-hidden">
           <div
             className={twMerge(
-              "flex flex-col gap-5 bg-slate-300 p-5 transition-all duration-1000 dark:bg-slate-900",
-              expanded ? "mt-0" : "mt-[-180%] md:mt-[-130%]",
+              "flex flex-col gap-5 bg-slate-300 p-10 transition-all duration-700 dark:bg-slate-900",
+              expanded ? "mt-0" : "mt-[-115vh]",
             )}
           >
             {children}
 
-            <Button className="ml-auto" onClick={expandDescription}>
-              {buttonCloseText}
-            </Button>
+            <div className="ml-0 mt-3 flex flex-col gap-3 md:ml-auto">
+              {href && <Button onClick={openLinkToProject}>See GitHub</Button>}
+
+              <Button onClick={expandDescription}>
+                {`↖ ${buttonCloseText}`}
+              </Button>
+            </div>
           </div>
         </div>
       )}

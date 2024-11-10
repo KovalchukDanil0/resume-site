@@ -17,8 +17,7 @@ import {
   useTheme,
 } from "remix-themes";
 import { themeSessionResolver } from "~/.server/sessions";
-import Loading from "~/components/Loading";
-import Navigation from "~/components/Navigation";
+import { Loading, Navigation } from "~/components";
 import "./index.scss";
 
 type Props = ComponentProps<"body">;

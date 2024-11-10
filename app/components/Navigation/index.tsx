@@ -1,7 +1,6 @@
 import { useLocation } from "@remix-run/react";
 import { ComponentProps } from "react";
-import Link from "~/components/Link";
-import { ThemeToggle } from "~/components/ThemeToggle";
+import { Link, ThemeToggle } from "~/components";
 
 type Props = ComponentProps<"nav">;
 
