@@ -24,6 +24,13 @@ export default function AboutPage() {
 
       <TechGallery />
 
+      {/* <h2>Music</h2>
+      <iframe
+        width="420"
+        height="315"
+        src="https://www.youtube.com/embed/pTKqWmpNPiI"
+      /> */}
+
       <ButtonNextPage variant="arrowRight" href="/projects">
         Go to my projects
       </ButtonNextPage>
