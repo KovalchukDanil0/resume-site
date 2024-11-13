@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ComponentProps, ReactElement } from "react";
 import { Theme, useTheme } from "remix-themes";
 import { twMerge } from "tailwind-merge";
 import {
@@ -23,13 +23,12 @@ import {
   WebpackSvg,
 } from "~/components/Svg";
 
-type Props = {
+interface Props extends ComponentProps<"a"> {
   icon: IconProps;
-  size: "large" | "small";
-  href?: string;
-};
+  size?: "default" | "large" | "small";
+}
 
-type IconProps =
+export type IconProps =
   | "nodejs"
   | "react"
   | "typescript"
@@ -116,15 +115,21 @@ function determineIcon(icon: IconProps): IconElmProps {
   return IconElm;
 }
 
-export default function TechIcon({ href, icon, size }: Readonly<Props>) {
+export default function TechIcon({
+  size = "default",
+  href,
+  icon,
+}: Readonly<Props>) {
   const IconElm = determineIcon(icon);
   const [theme] = useTheme();
 
   return (
     <a
       className={twMerge(
-        "scale-75 animate-scale animate-duration-050 md:size-40",
-        size === "large" ? "size-20" : "size-10",
+        "scale-75 animate-scale animate-duration-050",
+        size === "large"
+          ? "size-20 md:size-32 lg:size-40"
+          : "size-10 md:size-14 lg:size-20",
       )}
       target="_blank"
       href={href}

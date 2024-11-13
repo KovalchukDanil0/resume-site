@@ -22,7 +22,9 @@ import "./index.scss";
 
 type Props = ComponentProps<"body">;
 
-type LoaderProps = { theme: Theme | null };
+interface LoaderProps {
+  theme: Theme | null;
+}
 
 export async function loader({
   request,
@@ -33,7 +35,9 @@ export async function loader({
   };
 }
 
-type LayoutProps = { children: ReactNode };
+interface LayoutProps {
+  children: ReactNode;
+}
 
 export function Layout({ children }: Readonly<LayoutProps>): ReactElement {
   const data = useRouteLoaderData<typeof loader>("root");

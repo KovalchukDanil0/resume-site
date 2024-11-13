@@ -13,7 +13,7 @@ export default function ButtonNextPage({
         className,
       )}
     >
-      <Button {...props} variant="arrowRight" className="px-20 md:px-48">
+      <Button {...props} variant="arrowRight" className="px-14 md:px-48">
         {children}
       </Button>
     </div>

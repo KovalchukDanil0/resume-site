@@ -1,22 +1,24 @@
-import { ComponentProps } from "react";
+import { LinkProps, Link as LinkRemix } from "@remix-run/react";
 import { twMerge } from "tailwind-merge";
 
-type Props = ComponentProps<"a">;
+interface Props extends LinkProps {
+  variant?: "default" | "button";
+}
 
 export default function Link({
+  variant = "default",
   className,
-  children,
   ...props
 }: Readonly<Props>) {
   return (
-    <a
+    <LinkRemix
+      {...props}
       className={twMerge(
-        "w-fit cursor-pointer text-cyan-900 hover:underline dark:text-cyan-500",
+        variant === "button"
+          ? "button"
+          : "w-fit cursor-pointer text-cyan-900 hover:underline dark:text-cyan-500",
         className,
       )}
-      {...props}
-    >
-      {children}
-    </a>
+    />
   );
 }

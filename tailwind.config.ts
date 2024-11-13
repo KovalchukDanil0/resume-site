@@ -1,101 +1,96 @@
 import type { Config } from "tailwindcss";
 import { PluginCreator } from "tailwindcss/types/config";
 
-const extraPlugin: PluginCreator = ({ addUtilities }) =>
+const extraPlugin: PluginCreator = ({
+  addUtilities,
+  addComponents,
+  matchUtilities,
+  theme,
+}) => {
+  addComponents({
+    ".button": {
+      color: "white",
+      backgroundColor: theme("backgroundColor.cyan.800"),
+      fontWeight: theme("fontWeight.bold"),
+      padding: ` ${theme("padding.2")} ${theme("padding.10")}`,
+      borderRadius: theme("borderRadius.3xl"),
+
+      "&:hover": {
+        backgroundColor: theme("backgroundColor.cyan.900"),
+      },
+
+      "&:is(.dark *)": {
+        backgroundColor: theme("backgroundColor.cyan.900"),
+
+        "&:hover": {
+          backgroundColor: theme("backgroundColor.cyan.800"),
+        },
+      },
+    },
+  });
+
+  matchUtilities(
+    {
+      "animate-delay": (value) => ({
+        animationDelay: value,
+      }),
+
+      "animate-duration": (value) => ({
+        animationDuration: value,
+      }),
+    },
+    { values: theme("secondsMap") },
+  );
+
   addUtilities({
-    ".animate-delay-0": {
-      "animation-delay": "0s",
-    },
-
-    ".animate-delay-75": {
-      "animation-delay": ".075s",
-    },
-
-    ".animate-delay-100": {
-      "animation-delay": ".1s",
-    },
-
-    ".animate-delay-150": {
-      "animation-delay": ".15s",
-    },
-
-    ".animate-delay-200": {
-      "animation-delay": ".2s",
-    },
-
-    ".animate-delay-300": {
-      "animation-delay": ".3s",
-    },
-
-    ".animate-delay-500": {
-      "animation-delay": ".5s",
-    },
-
-    ".animate-delay-700": {
-      "animation-delay": ".7s",
-    },
-
-    ".animate-delay-1000": {
-      "animation-delay": "1s",
-    },
-
-    ".animate-duration-050": {
-      "animation-duration": ".5s",
-    },
-
-    ".animate-duration-100": {
-      "animation-duration": "1s",
-    },
-
-    ".animate-duration-200": {
-      "animation-duration": "2s",
-    },
-
-    ".animate-duration-300": {
-      "animation-duration": "3s",
-    },
-
-    ".animate-duration-400": {
-      "animation-duration": "4s",
-    },
-
-    ".animate-duration-500": {
-      "animation-duration": "5s",
-    },
-
     ".animate-paused": {
-      "animation-play-state": "paused",
+      animationPlayState: "paused",
     },
 
     ".animate-running": {
-      "animation-play-state": "running",
+      animationPlayState: "running",
     },
 
     ".animate-cubic-bezier": {
-      "animation-timing-function": "cubic-bezier(0.11, 0, 0.5, 0)",
+      animationTimingFunction: "cubic-bezier(0.11, 0, 0.5, 0)",
     },
 
     ".animate-once": {
-      "animation-iteration-count": "1",
+      animationIterationCount: "1",
     },
 
     ".animate-direction-reverse": {
-      "animation-direction": "reverse",
+      animationDirection: "reverse",
     },
 
     ".animate-direction-alternate-reverse": {
-      "animation-direction": "alternate-reverse",
+      animationDirection: "alternate-reverse",
     },
   });
+};
 
 export default {
   content: ["./app/**/*.{ts,tsx}"],
   darkMode: "class",
   theme: {
+    secondsMap: {
+      0: "0s",
+      50: ".050s",
+      75: ".075s",
+      100: ".1s",
+      150: ".15s",
+      200: ".2s",
+      300: ".3s",
+      400: ".4s",
+      500: ".5s",
+      700: ".7s",
+      1000: "1s",
+    },
+
     extend: {
       keyframes: {
-        "fade-in": {
-          from: { opacity: "0", "user-select": "none" },
+        fadeIn: {
+          from: { opacity: "0", userSelect: "none" },
           to: { opacity: "1", filter: "blur(0)" },
         },
 
@@ -105,7 +100,7 @@ export default {
           },
         },
 
-        "slightly-rotate": {
+        slightlyRotate: {
           to: {
             transform: "rotate(360deg)",
           },
@@ -124,7 +119,7 @@ export default {
           },
         },
 
-        "tail-fade": {
+        tailFade: {
           "0%": {},
           "50%": {
             opacity: "1",
@@ -149,54 +144,42 @@ export default {
           },
         },
 
-        "appear-right": {
+        appearRight: {
           from: {
             transform: "translateX(100vw)",
           },
         },
 
-        "appear-left": {
+        appearLeft: {
           from: {
             transform: "translateX(-100vw)",
           },
         },
 
-        expand: {
-          from: {
-            "max-height": "0",
-          },
-
-          to: {
-            "max-height": "200vh",
-          },
-        },
-
-        "slide-background": {
+        slideBackground: {
           "50%": {
-            "background-position": "100% 50%",
+            backgroundPosition: "100% 50%",
           },
         },
       },
 
       animation: {
-        "fade-in": "3s ease 0s normal forwards 1 fade-in",
+        "fade-in": "3s ease 0s normal forwards 1 fadeIn",
 
         scale: "scale 3s forwards cubic-bezier(0.5, 1, 0.89, 1)",
 
-        rotate: "slightly-rotate .5s ease-in-out 1",
+        rotate: "slightlyRotate .5s ease-in-out 1",
 
         shine: "shine 1s ease-in-out 1",
 
-        star: "fall var(--fall-duration) var(--fall-delay) linear infinite,tail-fade var(--tail-fade-duration) var(--fall-delay) ease-out infinite",
+        star: "fall var(--fall-duration) var(--fall-delay) linear infinite,tailFade var(--tail-fade-duration) var(--fall-delay) ease-out infinite",
 
         blink: "blink 2s linear infinite",
 
-        "appear-right": "1s ease-in-out 0s 1 alternate appear-right",
-        "appear-left": "1s ease-in-out 0s 1 alternate appear-left",
+        "appear-right": "1s ease-in-out 0s 1 alternate appearRight",
+        "appear-left": "1s ease-in-out 0s 1 alternate appearLeft",
 
-        expand: "expand 1.5s 1 ease-out forwards",
-
-        "slide-background": "slide-background 20s infinite ease-in-out both",
+        "slide-background": "slideBackground 20s infinite ease-in-out both",
       },
 
       backgroundImage: {

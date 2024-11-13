@@ -1,8 +1,7 @@
 import { ComponentProps, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
-import { Button } from "~/components";
+import { Button, Link } from "~/components";
 
-export type DirectionType = "default" | "reverse";
 export interface Props extends ComponentProps<"div"> {
   title: string;
   description: string;
@@ -10,12 +9,12 @@ export interface Props extends ComponentProps<"div"> {
   imgAlt?: string;
   buttonOpenText?: string;
   buttonCloseText?: string;
-  direction?: DirectionType;
+  reverse?: boolean;
   href?: string;
 }
 
 export default function ProjectCard({
-  direction = "default",
+  reverse = false,
   buttonOpenText = "Open",
   buttonCloseText = "Close",
   imgSrc,
@@ -36,11 +35,9 @@ export default function ProjectCard({
     });
   }
 
-  const reverse = direction === "reverse";
   const displayDescription = children && buttonOpenText;
 
   const expandDescription = () => setExpanded(!expanded);
-  const openLinkToProject = () => open(href);
 
   return (
     <div
@@ -53,10 +50,11 @@ export default function ProjectCard({
     >
       <div
         className={twMerge(
-          "flex w-full flex-col-reverse bg-slate-400 shadow-lg dark:bg-gray-800 md:h-96",
+          "flex w-full flex-col-reverse bg-slate-400 dark:bg-gray-800 md:h-96",
           reverse
             ? "animate-appear-right md:flex-row-reverse"
             : "animate-appear-left md:flex-row",
+          expanded ? "shadow-2xl" : "shadow-lg hover:shadow-2xl",
         )}
       >
         <div className="m-5 flex flex-col gap-3 md:mr-auto">
@@ -64,8 +62,12 @@ export default function ProjectCard({
           <h3>{description}</h3>
 
           {displayDescription && (
-            <Button onClick={expandDescription} className="mt-auto">
-              {expanded ? `${buttonCloseText} ↗` : `${buttonOpenText} ↘`}
+            <Button
+              onClick={expandDescription}
+              className="mt-auto"
+              variant={expanded ? "arrowTurnUp" : "arrowTurnDown"}
+            >
+              {expanded ? buttonCloseText : buttonOpenText}
             </Button>
           )}
         </div>
@@ -88,10 +90,14 @@ export default function ProjectCard({
             {children}
 
             <div className="ml-0 mt-3 flex flex-col gap-3 md:ml-auto">
-              {href && <Button onClick={openLinkToProject}>See GitHub</Button>}
+              {href && (
+                <Link variant="button" to={href} target="_blank">
+                  See GitHub
+                </Link>
+              )}
 
-              <Button onClick={expandDescription}>
-                {`↖ ${buttonCloseText}`}
+              <Button onClick={expandDescription} variant="arrowTurnUp" reverse>
+                {buttonCloseText}
               </Button>
             </div>
           </div>

@@ -13,35 +13,34 @@ export default function ProjectsGallery({
       <ProjectCard
         title="Paint My Pet"
         description="Fully functional e-commerce website"
-        direction="default"
         imgAlt="White Dog Landscape Interior"
         imgSrc="img/interior-dog-portrait.jpg"
-        href="https://github.com/KovalchukDanil0"
+        href="https://github.com/KovalchukDanil0/paint-my-pet"
       >
         <>
           <p className="mt-auto">
             This is a{" "}
-            <Link href="https://nextjs.org/" target="_blank">
+            <Link to="https://nextjs.org/" target="_blank">
               Next.js
             </Link>{" "}
             painting E-Shop project that using{" "}
-            <Link href="https://www.typescriptlang.org" target="_blank">
+            <Link to="https://www.typescriptlang.org" target="_blank">
               TypeScript
             </Link>
             ,{" "}
-            <Link href="https://react.dev" target="_blank">
+            <Link to="https://react.dev" target="_blank">
               React
             </Link>
             ,{" "}
-            <Link href="https://tailwindcss.com" target="_blank">
+            <Link to="https://tailwindcss.com" target="_blank">
               TailwindCss
             </Link>
             ,{" "}
-            <Link href="https://sass-lang.com" target="_blank">
+            <Link to="https://sass-lang.com" target="_blank">
               Sass
             </Link>{" "}
             under the hood together with{" "}
-            <Link href="https://supabase.com" target="_blank">
+            <Link to="https://supabase.com" target="_blank">
               Supabase
             </Link>{" "}
             back-end server.
@@ -58,10 +57,10 @@ export default function ProjectsGallery({
       <ProjectCard
         title="AEM Fixes"
         description="Chrome Extension to automate work on my current position"
-        direction="reverse"
         imgAlt="AEM Fixes Logo"
         imgSrc="img/aem-fixes-logo.png"
         href="https://github.com/KovalchukDanil0/AEMFixes"
+        reverse
       >
         <>
           <p>

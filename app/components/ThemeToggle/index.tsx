@@ -1,5 +1,5 @@
 import { ComponentProps } from "react";
-import { FaMoon, FaSun } from "react-icons/fa";
+import { FaMoon, FaSun } from "react-icons/fa6";
 import { Theme, useTheme } from "remix-themes";
 import { twMerge } from "tailwind-merge";
 import useFirstRender from "~/hooks/useFirstRender";
@@ -16,7 +16,7 @@ export default function ThemeToggle(props: Readonly<Props>) {
     <button
       {...props}
       className="size-6 text-orange-700 dark:text-slate-600"
-      onClick={() => setTheme(EnumX.of(Theme).next(theme ?? Theme.DARK))}
+      onClick={() => setTheme(EnumX(Theme, theme ?? Theme.DARK))}
     >
       {theme === Theme.LIGHT ? (
         <FaSun
