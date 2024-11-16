@@ -21,10 +21,10 @@ body {
     var(--start-end-color) $d
   );
   background-size: calc($d / math.sin($angle)) 100%;
-  animation: AnimationName 5s linear infinite reverse;
+  animation: scrollGradient 5s linear infinite reverse;
 }
 
-@keyframes AnimationName {
+@keyframes scrollGradient {
   0% {
     background-position: calc($d / sin($angle)) 0;
   }

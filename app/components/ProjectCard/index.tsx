@@ -1,4 +1,4 @@
-import { ComponentProps, useRef, useState } from "react";
+import { ComponentProps, ReactElement, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { Button, Link } from "~/components";
 
@@ -25,7 +25,7 @@ export default function ProjectCard({
   children,
   href,
   ...props
-}: Readonly<Props>) {
+}: Readonly<Props>): ReactElement {
   const projectDescriptionRef = useRef<HTMLDivElement>(null);
   const [expanded, setExpanded] = useState(false);
 
@@ -43,7 +43,7 @@ export default function ProjectCard({
     <div
       {...props}
       className={twMerge(
-        "scale-100 transition-all",
+        "scale-100 transition-transform",
         expanded ? "my-12 scale-105 md:my-20" : "hover:my-5 hover:scale-105",
         className,
       )}

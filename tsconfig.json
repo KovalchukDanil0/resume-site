@@ -18,7 +18,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["app/*"]
+      "~/*": ["app/*"],
+      "@server/*": ["app/.server/*"],
+      "@client/*": ["app/.client/*"]
     },
     "isolatedModules": true,
     "esModuleInterop": true,

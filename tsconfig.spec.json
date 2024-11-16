@@ -10,7 +10,7 @@
     "*.config.js",
     "app",
     "app/.server/*.ts",
-    "app/.client/*.tsx",
-    "app/projects/route.tsx"
+    "app/.server/*.tsx",
+    "app/.client/*.tsx"
   ]
 }

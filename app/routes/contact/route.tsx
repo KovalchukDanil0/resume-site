@@ -1,9 +1,10 @@
+import { ReactElement } from "react";
 import { Link } from "~/components";
 import "./index.scss";
 
 const resumeLink = "/pdf/my-resume.pdf";
 
-export default function ContactPage() {
+export default function ContactPage(): ReactElement {
   return (
     <div className="flex flex-col-reverse gap-5 md:flex-row">
       <div className="flex w-full flex-col gap-5 md:w-1/2">

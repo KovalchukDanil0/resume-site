@@ -1,4 +1,5 @@
-import type { Config } from "tailwindcss";
+import { Config } from "tailwindcss";
+import tailwindcss3d from "tailwindcss-3d";
 import { PluginCreator } from "tailwindcss/types/config";
 
 const extraPlugin: PluginCreator = ({
@@ -88,13 +89,17 @@ export default {
     },
 
     extend: {
+      backgroundSize: { 1: "100%", 2: "200%", 3: "300%", 4: "400%", 5: "500%" },
+
+      fontFamily: { "open-sans": "'Open Sans', sans-serif" },
+
       keyframes: {
         fadeIn: {
           from: { opacity: "0", userSelect: "none" },
           to: { opacity: "1", filter: "blur(0)" },
         },
 
-        scale: {
+        scaleIn: {
           to: {
             transform: "scale(1)",
           },
@@ -166,7 +171,7 @@ export default {
       animation: {
         "fade-in": "3s ease 0s normal forwards 1 fadeIn",
 
-        scale: "scale 3s forwards cubic-bezier(0.5, 1, 0.89, 1)",
+        scale: "scaleIn 3s forwards cubic-bezier(0.5, 1, 0.89, 1)",
 
         rotate: "slightlyRotate .5s ease-in-out 1",
 
@@ -189,5 +194,5 @@ export default {
     },
   },
 
-  plugins: [extraPlugin],
+  plugins: [extraPlugin, tailwindcss3d({ legacy: true })],
 } satisfies Config;

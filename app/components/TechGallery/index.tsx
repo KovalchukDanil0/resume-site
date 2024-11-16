@@ -1,4 +1,4 @@
-import { ComponentProps } from "react";
+import { ComponentProps, ReactElement } from "react";
 import { twMerge } from "tailwind-merge";
 import TechIcon, { IconProps } from "~/components/TechIcon";
 
@@ -76,7 +76,7 @@ const iconList: IconListType = [
 export default function TechGallery({
   className,
   ...props
-}: ComponentProps<"div">) {
+}: ComponentProps<"div">): ReactElement {
   return (
     <div
       {...props}

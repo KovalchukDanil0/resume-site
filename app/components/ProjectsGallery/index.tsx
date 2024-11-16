@@ -1,4 +1,4 @@
-import { ComponentProps } from "react";
+import { ComponentProps, ReactElement } from "react";
 import { twMerge } from "tailwind-merge";
 import { Link, ProjectCard } from "~/components";
 
@@ -7,7 +7,7 @@ type Props = ComponentProps<"div">;
 export default function ProjectsGallery({
   className,
   ...props
-}: Readonly<Props>) {
+}: Readonly<Props>): ReactElement {
   return (
     <div {...props} className={twMerge("flex flex-col gap-8", className)}>
       <ProjectCard

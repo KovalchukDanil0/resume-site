@@ -1,9 +1,14 @@
 import { createCookieSessionStorage } from "@remix-run/node";
+import { pino } from "pino";
 import { createThemeSessionResolver } from "remix-themes";
+
+const logger = pino({
+  level: "warn",
+});
 
 const secret = process.env.SESSION_SECRET;
 if (!secret) {
-  console.warn("cookies in unsecure mode!!!");
+  logger.warn("cookies in unsecure mode!!!");
 }
 
 const sessionStorage = createCookieSessionStorage({

@@ -1,4 +1,4 @@
-import { ComponentProps } from "react";
+import { AnimationEvent, ComponentProps, ReactElement } from "react";
 import { FaMoon, FaSun } from "react-icons/fa6";
 import { Theme, useTheme } from "remix-themes";
 import { twMerge } from "tailwind-merge";
@@ -7,7 +7,10 @@ import { EnumX } from "~/lib/utils";
 
 type Props = ComponentProps<"button">;
 
-export default function ThemeToggle(props: Readonly<Props>) {
+const gg = (ev: AnimationEvent<SVGElement>) =>
+  ev.currentTarget.classList.toggle("hover:rotate-y-180");
+
+export default function ThemeToggle(props: Readonly<Props>): ReactElement {
   const [theme, setTheme] = useTheme();
 
   const firstRender = useFirstRender();
@@ -20,12 +23,17 @@ export default function ThemeToggle(props: Readonly<Props>) {
     >
       {theme === Theme.LIGHT ? (
         <FaSun
-          className={twMerge("size-full", !firstRender && "animate-shine")}
+          className={twMerge(
+            "size-full transition-transform hover:rotate-90",
+            !firstRender && "animate-shine",
+          )}
         />
       ) : (
-        <FaMoon
-          className={twMerge("size-full", !firstRender && "animate-rotate")}
-        />
+        <div className="hover:rotate-y-180 transition-transform duration-300">
+          <FaMoon
+            className={twMerge("size-full", !firstRender && "animate-rotate")}
+          />
+        </div>
       )}
     </button>
   );

@@ -9,6 +9,7 @@ import {
   useRouteError,
   useRouteLoaderData,
 } from "@remix-run/react";
+import { themeSessionResolver } from "@server/sessions";
 import { ComponentProps, ReactElement, ReactNode } from "react";
 import {
   PreventFlashOnWrongTheme,
@@ -16,7 +17,6 @@ import {
   ThemeProvider,
   useTheme,
 } from "remix-themes";
-import { themeSessionResolver } from "~/.server/sessions";
 import { Loading, Navigation } from "~/components";
 import "./index.scss";
 
@@ -26,6 +26,10 @@ interface LoaderProps {
   theme: Theme | null;
 }
 
+interface LayoutProps {
+  children: ReactNode;
+}
+
 export async function loader({
   request,
 }: LoaderFunctionArgs): Promise<LoaderProps> {
@@ -33,10 +37,6 @@ export async function loader({
   return {
     theme: getTheme(),
   };
-}
-
-interface LayoutProps {
-  children: ReactNode;
 }
 
 export function Layout({ children }: Readonly<LayoutProps>): ReactElement {

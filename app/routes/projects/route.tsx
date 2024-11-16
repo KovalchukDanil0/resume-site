@@ -1,7 +1,8 @@
+import { ReactElement } from "react";
 import { ButtonNextPage, ProjectsGallery } from "~/components";
 import "./index.scss";
 
-export default function ProjectsPage() {
+export default function ProjectsPage(): ReactElement {
   return (
     <div className="flex flex-col gap-8">
       <h1>Projects</h1>

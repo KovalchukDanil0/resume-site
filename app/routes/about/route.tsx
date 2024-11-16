@@ -1,7 +1,8 @@
+import { ReactElement } from "react";
 import { ButtonNextPage, TechGallery } from "~/components";
 import "./index.scss";
 
-export default function AboutPage() {
+export default function AboutPage(): ReactElement {
   return (
     <div className="mx-3 flex flex-col items-center justify-center gap-10 text-center md:mx-10">
       <div className="fixed left-0 top-0 -z-50 h-full w-full -rotate-45">

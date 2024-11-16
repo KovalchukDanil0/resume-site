@@ -1,3 +1,4 @@
+import { ReactElement } from "react";
 import { twMerge } from "tailwind-merge";
 import Button, { Props as ButtonProps } from "~/components/Button";
 
@@ -5,7 +6,7 @@ export default function ButtonNextPage({
   className,
   children,
   ...props
-}: Readonly<ButtonProps>) {
+}: Readonly<ButtonProps>): ReactElement {
   return (
     <div
       className={twMerge(

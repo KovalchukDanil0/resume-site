@@ -1,4 +1,5 @@
 import { useLocation } from "@remix-run/react";
+import { ReactElement } from "react";
 import { Link } from "~/components";
 
 type UrlListType = {
@@ -12,18 +13,18 @@ const urlList: UrlListType = [
   { path: "/contact", text: "Contact" },
 ];
 
-export default function SecondaryNavigation() {
+export default function SecondaryNavigation(): ReactElement {
   const { pathname } = useLocation();
 
   return (
     <>
       {urlList.map(({ path, text }) => {
         if (path === pathname) {
-          return <></>;
+          return null;
         }
 
         return (
-          <Link key={path} to={path}>
+          <Link key={text} to={path}>
             {text}
           </Link>
         );

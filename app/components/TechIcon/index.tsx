@@ -119,7 +119,7 @@ export default function TechIcon({
   size = "default",
   href,
   icon,
-}: Readonly<Props>) {
+}: Readonly<Props>): ReactElement {
   const IconElm = determineIcon(icon);
   const [theme] = useTheme();
 
@@ -136,7 +136,7 @@ export default function TechIcon({
     >
       <IconElm
         className={twMerge(
-          "size-full object-contain text-green-700 transition-all hover:scale-110",
+          "size-full object-contain text-green-700 transition-transform hover:scale-110",
           theme === Theme.DARK ? "text-white" : "text-black",
         )}
       />

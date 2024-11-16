@@ -4,7 +4,7 @@
     "remix.env.d.ts",
     "app",
     "app/.server/*.ts",
-    "app/.client/*.tsx",
-    "app/routes/projects/route.tsx"
+    "app/.server/*.tsx",
+    "app/.client/*.tsx"
   ]
 }

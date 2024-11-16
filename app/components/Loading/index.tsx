@@ -1,9 +1,9 @@
-import { ComponentProps } from "react";
+import { ComponentProps, ReactElement } from "react";
 import "./index.scss";
 
 type Props = ComponentProps<"div">;
 
-export default function Loading(props: Readonly<Props>) {
+export default function Loading(props: Readonly<Props>): ReactElement {
   return (
     <div
       {...props}

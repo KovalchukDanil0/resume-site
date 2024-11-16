@@ -1,10 +1,11 @@
+import { ReactElement } from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
 import { useTheme } from "remix-themes";
 import { twMerge } from "tailwind-merge";
 import { Button } from "~/components";
 import "./index.scss";
 
-export default function HomePage() {
+export default function HomePage(): ReactElement {
   const [theme] = useTheme();
 
   return (

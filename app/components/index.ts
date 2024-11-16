@@ -8,4 +8,3 @@ export { default as ProjectsGallery } from "./ProjectsGallery";
 export { default as Svg } from "./Svg";
 export { default as TechGallery } from "./TechGallery";
 export { default as TechIcon } from "./TechIcon";
-export { default as ThemeToggle } from "./ThemeToggle";
