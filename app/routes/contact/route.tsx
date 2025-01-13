@@ -1,8 +1,23 @@
+import { MetaFunction } from "@remix-run/node";
 import { ReactElement } from "react";
 import { Link } from "~/components";
 import "./index.scss";
 
 const resumeLink = "/pdf/my-resume.pdf";
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Contact | Danylo Resume" },
+    {
+      property: "og:title",
+      content: "Danylo Resume Contact Page",
+    },
+    {
+      name: "description",
+      content: "Don't hesitate to contact me",
+    },
+  ];
+};
 
 export default function ContactPage(): ReactElement {
   return (

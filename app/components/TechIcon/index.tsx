@@ -126,7 +126,7 @@ export default function TechIcon({
   return (
     <a
       className={twMerge(
-        "scale-75 animate-scale animate-duration-500",
+        "animate-scale animate-duration-500 scale-75",
         size === "large"
           ? "size-20 md:size-32 lg:size-40"
           : "size-10 md:size-14 lg:size-20",

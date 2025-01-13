@@ -1,9 +1,10 @@
-FROM node:18-alpine
-WORKDIR /usr/server/app
+FROM node:lts
+WORKDIR /app/remix/resume-site
 
 COPY ./package.json ./
 RUN npm install
-COPY ./ .
+COPY . .
 RUN npm run build
 ENV NODE_ENV=production
 CMD ["npm", "run", "start"]
+EXPOSE 5173

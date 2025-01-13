@@ -1,6 +1,21 @@
+import { MetaFunction } from "@remix-run/node";
 import { ReactElement } from "react";
 import { ButtonNextPage, TechGallery } from "~/components";
 import "./index.scss";
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "About | Danylo Resume" },
+    {
+      property: "og:title",
+      content: "Danylo Resume About Page",
+    },
+    {
+      name: "description",
+      content: "Here you can find my description and skills",
+    },
+  ];
+};
 
 export default function AboutPage(): ReactElement {
   return (

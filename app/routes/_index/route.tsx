@@ -1,3 +1,4 @@
+import { MetaFunction } from "@remix-run/node";
 import { ReactElement } from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
 import { useTheme } from "remix-themes";
@@ -5,13 +6,27 @@ import { twMerge } from "tailwind-merge";
 import { Button } from "~/components";
 import "./index.scss";
 
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Homepage | Danylo Resume" },
+    {
+      property: "og:title",
+      content: "Danylo Resume Homepage",
+    },
+    {
+      name: "description",
+      content: "This resume site is the best",
+    },
+  ];
+};
+
 export default function HomePage(): ReactElement {
   const [theme] = useTheme();
 
   return (
     <div className="flex flex-col-reverse items-center justify-around gap-8 md:flex-row md:gap-3">
       <div className="mx-0 flex flex-col gap-5 md:mx-10 xl:mx-48">
-        <h1 className="scale-90 animate-scale">
+        <h1 className="animate-scale scale-90">
           <span className="inline-block animate-fade-in opacity-0 blur-sm animate-delay-200 animate-cubic-bezier">
             Danylo
           </span>

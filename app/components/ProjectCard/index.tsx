@@ -43,7 +43,7 @@ export default function ProjectCard({
     <div
       {...props}
       className={twMerge(
-        "scale-100 transition-transform",
+        "transition-all scale-100",
         expanded ? "my-12 scale-105 md:my-20" : "hover:my-5 hover:scale-105",
         className,
       )}
@@ -83,7 +83,7 @@ export default function ProjectCard({
         <div ref={projectDescriptionRef} className="overflow-hidden">
           <div
             className={twMerge(
-              "flex flex-col gap-5 bg-slate-300 p-10 transition-all duration-700 dark:bg-slate-900",
+              "flex flex-col gap-5 bg-slate-300 p-10 duration-700 dark:bg-slate-900",
               expanded ? "mt-0" : "mt-[-115vh]",
             )}
           >

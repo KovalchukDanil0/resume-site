@@ -1,12 +1,11 @@
 // @ts-check
 
 import { default as eslint } from "@eslint/js";
+import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
 
 // @ts-expect-error no declaration file
 import reactHooks from "eslint-plugin-react-hooks";
-// @ts-expect-error no declaration file
-import reactRefresh from "eslint-plugin-react-refresh";
 
 export default tseslint.config(
   eslint.configs.recommended,
