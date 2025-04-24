@@ -1,6 +1,7 @@
 import { renderToStream } from "@react-pdf/renderer";
 import type { LoaderFunction } from "@remix-run/node";
 import { ResumePdf } from "~/components";
+import { email, phone } from "~/lib/info";
 
 interface RequestType {
   summary: string | null;
@@ -19,8 +20,8 @@ export const loader: LoaderFunction = async ({ request }) => {
   // render the PDF as a stream so you do it async
   const stream = await renderToStream(
     <ResumePdf
-      email={import.meta.env.VITE_EMAIL}
-      phone={import.meta.env.VITE_PHONE}
+      email={email}
+      phone={phone}
       location={import.meta.env.VITE_LOCATION}
       photo="/img/author-resume.jpg"
       name="Danylo Kovalchuk"

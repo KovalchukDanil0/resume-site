@@ -25,8 +25,6 @@ export default function Particles() {
   useFrame(({ pointer }) => {
     const positionsAttr = mesh.current?.geometry.attributes.position;
 
-    console.log(pointer.x, pointer.y);
-
     for (let i = 0; i < PARTICLE_COUNT; i++) {
       const i3 = i * 3;
       const dx = positions[i3] - pointer.x;

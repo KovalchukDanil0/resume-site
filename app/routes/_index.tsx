@@ -2,8 +2,9 @@ import type { MetaFunction } from "@remix-run/node";
 import { FaArrowRight, FaGithub, FaLinkedin } from "react-icons/fa6";
 import { useTheme } from "remix-themes";
 import { Link } from "~/components";
+import { github, linkedIn, metaSite } from "~/lib/info";
 
-const title = "Homepage" + import.meta.env.VITE_META_SITE;
+const title = "Homepage" + metaSite;
 
 export const meta: MetaFunction = () => [
   {
@@ -58,11 +59,11 @@ export default function HomePage() {
         </Link>
 
         <div className="animate-fade-in animate-delay-1000 mt-auto flex flex-row gap-4">
-          <Link target="_blank" to={import.meta.env.VITE_GITHUB}>
+          <Link target="_blank" to={github}>
             <FaGithub />
           </Link>
 
-          <Link target="_blank" to={import.meta.env.VITE_LINKEDIN}>
+          <Link target="_blank" to={linkedIn}>
             <FaLinkedin />
           </Link>
         </div>

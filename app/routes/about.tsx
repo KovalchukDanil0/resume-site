@@ -1,7 +1,8 @@
 import type { MetaFunction } from "@remix-run/node";
 import { LinkNextPage, TechGallery } from "~/components";
+import { metaSite } from "~/lib/info";
 
-const title = "About" + import.meta.env.VITE_META_SITE;
+const title = "About" + metaSite;
 
 export const meta: MetaFunction = () => [
   {

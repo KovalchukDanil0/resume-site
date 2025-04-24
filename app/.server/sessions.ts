@@ -18,6 +18,4 @@ const sessionStorage = createCookieSessionStorage({
   },
 });
 
-console.log(import.meta.env.VITE_DOMAIN);
-
 export const themeSessionResolver = createThemeSessionResolver(sessionStorage);

@@ -1,15 +1,11 @@
 import type { MetaFunction } from "@remix-run/node";
 import { Link } from "~/components";
-
-const email = import.meta.env.VITE_EMAIL;
-const phone = import.meta.env.VITE_PHONE;
-const github = import.meta.env.VITE_GITHUB;
-const linkedIn = import.meta.env.VITE_LINKEDIN;
+import { email, github, linkedIn, metaSite, phone } from "~/lib/info";
 
 //TODO: Replace static pdf with dynamic pdf generation
 const resumeLink = "/pdf/my-resume.pdf";
 
-const title = "Contact" + import.meta.env.VITE_META_SITE;
+const title = "Contact" + metaSite;
 
 export const meta: MetaFunction = () => [
   {
