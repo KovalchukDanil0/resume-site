@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  ::selection {
+    @apply bg-purple-500 opacity-30 dark:bg-purple-900;
+  }
+
+  p {
+    @apply text-base text-black dark:text-white;
+  }
+
+  h1 {
+    @apply text-5xl text-black md:text-7xl dark:text-white;
+  }
+
+  h2 {
+    @apply text-4xl text-black md:text-6xl dark:text-white;
+  }
+
+  h3 {
+    @apply text-base text-black md:text-xl dark:text-white;
+  }
+
+  img {
+    @apply text-transparent;
+  }
+
+  svg {
+    @apply text-black dark:text-white;
+  }
+
+  a {
+    @apply cursor-pointer;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+}
+
+@theme {
+  --animate-fade-in: fade-in 3s ease 0s normal both 1;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      user-select: none;
+    }
+
+    to {
+      opacity: 1;
+      filter: blur(0);
+    }
+  }
+
+  --animate-scale: scale-in 3s forwards cubic-bezier(0.5, 1, 0.89, 1);
+
+  @keyframes scale-in {
+    from {
+      transform: scale(0.9);
+    }
+
+    to {
+      transform: scale(1);
+    }
+  }
+
+  --animate-rotate: slightly-rotate 0.5s ease-in-out 1;
+
+  @keyframes slightly-rotate {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  --animate-shine: shine 0.5s 0.5s ease-in-out 1;
+
+  @keyframes shine {
+    from {
+      filter: drop-shadow(0 0 20px #c2410c) drop-shadow(0 0 60px #c2410c)
+        drop-shadow(0 0 250px #c2410c);
+    }
+  }
+
+  --animate-appear-right: appear-right both 0.5s 0.5s ease-in-out 1;
+
+  @keyframes appear-right {
+    from {
+      transform: translateX(100vw);
+    }
+  }
+
+  --animate-appear-left: appear-left 1s both ease-in-out 0s 1 alternate;
+
+  @keyframes appear-left {
+    from {
+      transform: translateX(-100vw);
+    }
+  }
+}
+
+@utility animate-paused {
+  animation-play-state: paused;
+}
+
+@utility animate-running {
+  animation-play-state: running;
+}
+
+@utility animate-cubic-bezier {
+  animation-timing-function: cubic-bezier(0.11, 0, 0.5, 0);
+}
+
+@utility animate-once {
+  animation-iteration-count: 1;
+}
+
+@utility animate-delay-* {
+  animation-delay: --value(integer) ms;
+}
+
+@utility animate-direction-reverse {
+  animation-direction: reverse;
+}
+
+@utility animate-direction-alternate-reverse {
+  animation-direction: alternate-reverse;
+}
+
+@utility bg-radial-gradient {
+  background-image: radial-gradient(
+    ellipse at bottom,
+    var(--tw-gradient-stops)
+  );
+}
