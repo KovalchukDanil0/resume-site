@@ -21,7 +21,7 @@ sketch
 /.cache
 /build
 /public/build
-.env
+.env.local
 
 ### VisualStudioCode ###
 .vscode/*
@@ -437,4 +437,3 @@ FodyWeavers.xsd
 # End of https://www.toptal.com/developers/gitignore/api/visualstudio,visualstudiocode,remix,react
 
 pnpm-lock.yaml
-*.env

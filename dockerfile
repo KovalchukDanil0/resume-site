@@ -1,4 +1,4 @@
-FROM node:lts
+FROM node:lts-bullseye-slim
 WORKDIR /app/remix/resume-site
 
 COPY ./package.json ./

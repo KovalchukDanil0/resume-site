@@ -1,4 +1,5 @@
-import { LoaderFunctionArgs } from "@remix-run/node";
+import "@fontsource/open-sans";
+import type { LoaderFunctionArgs } from "@remix-run/node";
 import {
   isRouteErrorResponse,
   Links,
@@ -9,109 +10,102 @@ import {
   useRouteError,
   useRouteLoaderData,
 } from "@remix-run/react";
-import { themeSessionResolver } from "@server/sessions";
-import { ComponentProps, ReactElement, ReactNode } from "react";
+import type { PropsWithChildren } from "react";
 import {
   PreventFlashOnWrongTheme,
   Theme,
   ThemeProvider,
   useTheme,
 } from "remix-themes";
-import { Loading, Navigation } from "~/components";
-import "./index.scss";
+import { twMerge } from "tailwind-merge";
+import { themeSessionResolver } from "~/.server/sessions";
+import { Loading, Navigation, ParticleBackground } from "~/components";
+import "~/styles/main.css";
 
-type Props = ComponentProps<"body">;
-
-interface LoaderProps {
-  theme: Theme | null;
+interface AppBodyProps extends PropsWithChildren {
+  theme: Theme;
 }
 
-interface LayoutProps {
-  children: ReactNode;
-}
-
-export async function loader({
-  request,
-}: LoaderFunctionArgs): Promise<LoaderProps> {
+export async function loader({ request }: LoaderFunctionArgs) {
   const { getTheme } = await themeSessionResolver(request);
   return {
-    theme: getTheme(),
+    theme: getTheme() ?? Theme.DARK,
   };
 }
 
-export function Layout({ children }: Readonly<LayoutProps>): ReactElement {
-  const data = useRouteLoaderData<typeof loader>("root");
+function AppBody({ theme, children }: Readonly<AppBodyProps>) {
+  const [currentTheme] = useTheme();
 
   return (
-    <ThemeProvider
-      specifiedTheme={data?.theme ?? Theme.DARK}
-      themeAction="/action/set-theme"
+    <html
+      className={twMerge(
+        "min-h-full overflow-x-hidden",
+        currentTheme === Theme.DARK ? "dark" : "",
+      )}
+      lang="en"
     >
-      {children}
-    </ThemeProvider>
-  );
-}
-
-export default function App(): ReactElement {
-  return (
-    <AppBody>
-      <Navigation />
-
-      <main>
-        <Outlet />
-      </main>
-      <ScrollRestoration />
-      <Scripts />
-    </AppBody>
-  );
-}
-
-function AppBody({ children, ...props }: Readonly<Props>): ReactElement {
-  const data = useRouteLoaderData<typeof loader>("root");
-  const [theme] = useTheme();
-
-  return (
-    <html lang="en" className={theme === Theme.DARK ? "dark" : ""}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
+        <link rel="shortcut icon" type="image/x-icon" href="/favicon.png" />
         <Meta />
-        <PreventFlashOnWrongTheme ssrTheme={Boolean(data?.theme)} />
+        <PreventFlashOnWrongTheme ssrTheme={Boolean(theme)} />
         <Links />
       </head>
-      <body {...props} suppressHydrationWarning>
-        {children}
+      <body
+        className="size-auto bg-slate-300 dark:bg-slate-900"
+        suppressHydrationWarning
+      >
+        <Navigation />
+
+        <ParticleBackground />
+
+        <main className="relative z-10 size-full p-8 md:p-20">{children}</main>
+
+        <ScrollRestoration />
+        <Scripts />
       </body>
     </html>
   );
 }
 
-export function ErrorBoundary(): ReactElement {
-  const error = useRouteError();
+export function Layout({ children }: Readonly<PropsWithChildren>) {
+  const { theme } = useRouteLoaderData<typeof loader>("root") ?? {
+    theme: Theme.DARK,
+  };
 
   return (
-    <AppBody className="flex flex-col items-center justify-center gap-5 text-center">
-      {isRouteErrorResponse(error) ? (
-        <>
-          <h1 className="text-red-600">
-            {error.status} {error.statusText}
-          </h1>
-          <p>{error.data}</p>
-        </>
-      ) : (
-        <h1>Unknown Error</h1>
-      )}
+    <ThemeProvider specifiedTheme={theme} themeAction="/action/set-theme">
+      <AppBody theme={theme}>{children}</AppBody>
+    </ThemeProvider>
+  );
+}
+
+export function ErrorBoundary() {
+  const error = useRouteError();
+
+  return isRouteErrorResponse(error) ? (
+    <div className="flex flex-col items-center justify-center gap-5 text-center">
+      <h1 className="text-red-600">
+        {error.status} {error.statusText}
+      </h1>
+      <p>{error.data}</p>
 
       <img
         className="size-64 object-cover md:size-96"
         alt="Cat Error"
         src="https://cataas.com/cat/gif"
       />
-    </AppBody>
+    </div>
+  ) : (
+    <h1>Unknown Error</h1>
   );
 }
 
-export function HydrateFallback(): ReactElement {
+export function HydrateFallback() {
   return <Loading />;
+}
+
+export default function App() {
+  return <Outlet />;
 }

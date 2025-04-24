@@ -1,23 +1,15 @@
 import { createCookieSessionStorage } from "@remix-run/node";
-import { pino } from "pino";
 import { createThemeSessionResolver } from "remix-themes";
 
-const logger = pino({
-  level: "warn",
-});
-
-const secret = process.env.SESSION_SECRET;
+const secret = import.meta.env.SESSION_SECRET;
 if (!secret) {
-  logger.warn("cookies in unsecure mode!!!");
+  console.warn("cookies in unsecure mode!!!");
 }
 
 const sessionStorage = createCookieSessionStorage({
   cookie: {
     name: "__remix-themes",
-    domain:
-      process.env.NODE_ENV === "development"
-        ? "localhost"
-        : "danylo-resume-site.vercel.app",
+    domain: import.meta.env.VITE_DOMAIN,
     path: "/",
     httpOnly: true,
     sameSite: "lax",
@@ -25,5 +17,7 @@ const sessionStorage = createCookieSessionStorage({
     secure: true,
   },
 });
+
+console.log(import.meta.env.VITE_DOMAIN);
 
 export const themeSessionResolver = createThemeSessionResolver(sessionStorage);

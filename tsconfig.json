@@ -3,7 +3,7 @@
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
-    "moduleResolution": "Node",
+    "moduleResolution": "bundler",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "noImplicitAny": true,
@@ -18,9 +18,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["app/*"],
-      "@server/*": ["app/.server/*"],
-      "@client/*": ["app/.client/*"]
+      "~/*": ["app/*"]
     },
     "isolatedModules": true,
     "esModuleInterop": true,
@@ -29,17 +27,23 @@
     "strict": true,
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
-    "noEmit": true
+    "noEmit": true,
+    "verbatimModuleSyntax": true,
+    "types": [
+      "node",
+      "vite/client",
+      "vite-plugin-svgr/client",
+      "@remix-run/dev",
+      "@remix-run/node",
+      "./vite.d.ts"
+    ],
+    "outDir": "./dist/out-tsc"
   },
-  "include": [],
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.spec.json"
-    }
+  "include": [
+    "app",
+    "app/.server/*.ts",
+    "app/.server/*.tsx",
+    "app/.client/*.tsx"
   ],
   "exclude": ["node_modules"]
 }

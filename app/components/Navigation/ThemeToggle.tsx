@@ -1,13 +1,13 @@
-import { ComponentProps, ReactElement } from "react";
+import type { ComponentProps } from "react";
 import { FaMoon, FaSun } from "react-icons/fa6";
 import { Theme, useTheme } from "remix-themes";
 import { twMerge } from "tailwind-merge";
-import useFirstRender from "~/hooks/useFirstRender";
+import { useFirstRender } from "~/hooks";
 import { EnumX } from "~/lib/utils";
 
 type Props = ComponentProps<"button">;
 
-export default function ThemeToggle(props: Readonly<Props>): ReactElement {
+export default function ThemeToggle(props: Readonly<Props>) {
   const [theme, setTheme] = useTheme();
 
   const firstRender = useFirstRender();
@@ -15,22 +15,28 @@ export default function ThemeToggle(props: Readonly<Props>): ReactElement {
   return (
     <button
       {...props}
-      className="size-6 text-orange-700 dark:text-slate-600"
       onClick={() => setTheme(EnumX(Theme, theme ?? Theme.DARK))}
+      className="size-6 transition-transform"
+      aria-label="Theme Toggle"
     >
-      {theme === Theme.LIGHT ? (
-        <FaSun
-          className={twMerge(
-            "size-full transition-transform hover:rotate-90",
-            !firstRender && "animate-shine",
-          )}
-        />
-      ) : (
-        <div className="transition-transform duration-300 hover:rotate-y-180">
+      {theme === Theme.DARK ? (
+        <div className="duration-300 hover:rotate-y-180">
           <FaMoon
-            className={twMerge("size-full", !firstRender && "animate-rotate")}
+            className={twMerge(
+              "size-full text-slate-600",
+              !firstRender && "animate-rotate",
+            )}
+            aria-label="Toggle Dark Theme"
           />
         </div>
+      ) : (
+        <FaSun
+          className={twMerge(
+            "size-full text-orange-700 hover:rotate-90",
+            !firstRender && "animate-shine",
+          )}
+          aria-label="Toggle Light Theme"
+        />
       )}
     </button>
   );
